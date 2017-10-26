@@ -59,7 +59,7 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", budgets.HouseHoldId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", Budgets.HouseHoldId);
             return View(budgets);
         }
 

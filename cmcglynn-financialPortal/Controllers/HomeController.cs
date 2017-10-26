@@ -1,7 +1,11 @@
 ﻿using cmcglynn_financialPortal.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,6 +14,8 @@ namespace cmcglynn_financialPortal.Controllers
     [Authorize]
     public class HomeController : Universal
     {
+        //private ApplicationDbContext db = new ApplicationDbContext();
+        [AuthorizeHouseHoldRequired]
         public ActionResult Index()
         {
             //CalculationHelper helper = new CalculationHelper(new Expenses());
@@ -31,5 +37,70 @@ namespace cmcglynn_financialPortal.Controllers
 
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Contact(EmailModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var body = "<p>Email From: <bold>{0}</bold>({1})</p><p>Message:</p><p>{2}</p>";
+                    var from = "MyPortfolio<qpc4ever@gmail.com>";
+                    model.Body = "This is a message from your Admin";
+
+                    //var assignedUser = db.Users.Find(ticket).AssignedUserId);
+                    //var emailTo = assignedUser.Email;
+
+
+                    var email = new MailMessage(from,
+                        ConfigurationManager.AppSettings["emailto"])
+                    {
+                        Subject = "Portfolio Contact Email",
+                        Body = string.Format(body, model.FromName, model.FromEmail,
+                        model.Body),
+                        IsBodyHtml = true
+                    };
+
+                    //var svc = new PersonalEmail();
+                    //await svc.SendAsync(email);
+
+                    return RedirectToAction("Contact");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    await Task.FromResult(0);
+                }
+            }
+
+
+            return View(model);
+
+
+        }
+
+        public ActionResult CustomErrors()
+        {
+            return View();
+        }
+
+        public async Task<ActionResult> LeaveHouseHold()
+        {
+
+
+
+            //Implementation of leaving household
+            var user = db.Users.Find(User.Identity.GetUserId());
+            await ControllerContext.HttpContext.RefreshAuthentication(user);
+            return View();
+}
+        public ActionResult CreateJoinHouseHold()
+        {
+            //Implementation for creating and joining household
+            return View();
+        }
+
     }
 }
+   

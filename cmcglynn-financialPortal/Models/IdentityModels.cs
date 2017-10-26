@@ -15,6 +15,8 @@ namespace cmcglynn_financialPortal.Models
         public string LastName { get; set; }
         public string ProfilePic { get; set; }                            // ADD ALL "NAME" LINES OF CODE FIRST EVERY PROJECT
         public string TimeZone { get; set; }
+        public int? HouseHoldId { get; set; }
+        public virtual HouseHold HouseHold { get; set; }
 
         public string FullName
         {
@@ -29,6 +31,7 @@ namespace cmcglynn_financialPortal.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("HouseHoldId", HouseHoldId.ToString()));
             return userIdentity;
         }
     }
