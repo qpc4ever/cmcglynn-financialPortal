@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace cmcglynn_financialPortal.Models
 {
+
     public class Universal : Controller
     {
         public ApplicationDbContext db = new ApplicationDbContext();
@@ -20,7 +21,7 @@ namespace cmcglynn_financialPortal.Models
                 ViewBag.FirstName = user.FirstName;
                 ViewBag.LastName = user.LastName;
                 ViewBag.FullName = user.FullName;
-                
+                ViewBag.ProfilePic = user.ProfilePic;
             }
 
             base.OnActionExecuted(filterContext);

@@ -17,6 +17,14 @@
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </div>
     </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Profile Picture</label>
+        <div class="col-md-10">
+            <input name="image" type="file" class="form-control" />  @*INPUT TO UPLOAD IMAGES*@
+        </div>
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">

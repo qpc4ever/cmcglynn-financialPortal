@@ -200,6 +200,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CalculationHelper.cs" />
     <Compile Include="Models\CodeFirst\Accounts.cs" />
     <Compile Include="Models\CodeFirst\Banks.cs" />
     <Compile Include="Controllers\BanksController.cs" />
@@ -210,6 +211,8 @@
     <Compile Include="Models\CodeFirst\Income.cs" />
     <Compile Include="Models\CodeFirst\Notifications.cs" />
     <Compile Include="Models\CodeFirst\Transactions.cs" />
+    <Compile Include="Models\EmailModel.cs" />
+    <Compile Include="Models\ICalculate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Universal.cs" />
@@ -298,6 +301,7 @@
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Manage\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

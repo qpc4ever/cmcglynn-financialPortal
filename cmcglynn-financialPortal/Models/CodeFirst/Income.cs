@@ -5,7 +5,7 @@ using System.Web;
 
 namespace cmcglynn_financialPortal.Models.CodeFirst
 {
-    public class Income
+    public class Income /*: IParent*/
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,5 +16,10 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public string HouseHoldId { get; set; }
 
         public virtual HouseHold HouseHold { get; set; }
+
+        //public decimal CalculateYearlyTotal()
+        //{
+        //    return Amount * Frequency;
+        //}
     }
 }

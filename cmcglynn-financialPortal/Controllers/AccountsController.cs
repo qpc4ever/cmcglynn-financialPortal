@@ -11,9 +11,10 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    public class AccountsController : Controller
+    [Authorize]
+    public class AccountsController : Universal
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Accounts
         public ActionResult Index()

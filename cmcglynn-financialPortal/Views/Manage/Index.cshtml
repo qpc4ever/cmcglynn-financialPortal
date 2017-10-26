@@ -15,7 +15,8 @@
             [
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")
+                @Html.ActionLink("Change your password", "ChangePassword")<br/>
+                @Html.ActionLink("Update Account Information", "ChangeUserInfo")
             }
             else
             {

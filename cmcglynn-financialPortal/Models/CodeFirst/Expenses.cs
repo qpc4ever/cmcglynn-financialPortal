@@ -5,7 +5,7 @@ using System.Web;
 
 namespace cmcglynn_financialPortal.Models.CodeFirst
 {
-    public class Expenses
+    public class Expenses /*: IParent*/
     {
         public int Id { get; set; }
         public string Name { get; set; }
