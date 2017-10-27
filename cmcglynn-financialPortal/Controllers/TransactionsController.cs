@@ -11,15 +11,14 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    [Authorize]
-    public class TransactionsController : Universal
+    public class TransactionsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.HouseHold);
+            var transactions = db.Transactions.Include(t => t.Description).Include(t => t.Amount).Include(t => t.Name);
             return View(transactions.ToList());
         }
 
@@ -59,7 +58,7 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions.HouseHoldId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
             return View(transactions);
         }
 
@@ -75,7 +74,7 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions.HouseHoldId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
             return View(transactions);
         }
 
@@ -92,7 +91,7 @@ namespace cmcglynn_financialPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions.HouseHoldId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
             return View(transactions);
         }
 

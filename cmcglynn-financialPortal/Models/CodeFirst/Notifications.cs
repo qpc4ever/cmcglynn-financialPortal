@@ -12,9 +12,9 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public DateTimeOffset Created { get; set; }
         public string Description { get; set; }
         public string Type { get; set; }
-        public string NotifyUserId { get; set; }
-        public string TransactionsId { get; set; }
-        public string HouseHoldId { get; set; }
+        public int? NotifyUserId { get; set; }
+        public int? TransactionsId { get; set; }
+        public int? HouseHoldId { get; set; }
 
         public virtual ApplicationUser NotifyUser { get; set; }
 

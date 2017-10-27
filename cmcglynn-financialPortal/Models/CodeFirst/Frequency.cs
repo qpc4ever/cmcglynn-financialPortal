@@ -11,8 +11,8 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public string Weekly { get; set; }
         public string Monthly { get; set; }
         public string Yearly { get; set; }
-        public string HouseHoldId { get; set; }
-        public decimal BudgetsId { get; set; }
+        public int? HouseHoldId { get; set; }
+        public int? BudgetsId { get; set; }
 
         public virtual HouseHold HouseHold { get; set; }
         public virtual Budgets Budgets { get; set; }
