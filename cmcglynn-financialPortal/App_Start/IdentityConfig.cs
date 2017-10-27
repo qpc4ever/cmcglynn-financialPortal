@@ -17,47 +17,45 @@ using System.Net;
 
 namespace cmcglynn_financialPortal
 {
-    public class EmailService : IIdentityMessageService
+    public async Task SendAsync(IdentityMessage message)
     {
-        public async Task SendAsync(IdentityMessage message)
+        var GmailUsername = WebConfigurationManager.AppSettings["username"];
+        var GmailPassword = WebConfigurationManager.AppSettings["password"];
+        var host = WebConfigurationManager.AppSettings["host"];
+        int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
+
+        using (var smtp = new SmtpClient()
         {
-            var GmailUsername = WebConfigurationManager.AppSettings["username"];
-            var GmailPassword = WebConfigurationManager.AppSettings["password"];
-            var host = WebConfigurationManager.AppSettings["host"];
-            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
+            Host = host,
+            Port = port,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(GmailUsername, GmailPassword)
+        })
 
-            using (var smtp = new SmtpClient()
+        using (var email = new MailMessage("cmcglynn-financialPortal<qpc4ever@gmail.com>",
+               message.Destination)
+        {
+            Subject = message.Subject,
+            IsBodyHtml = true,
+            Body = message.Body
+        })
+        {
+            try
             {
-                Host = host,
-                Port = port,
-                EnableSsl = true,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(GmailUsername, GmailPassword)
-            })
-
-            using (var email = new MailMessage("cmcglynn-financialPortal<qpc4ever@gmail.com>",
-                   message.Destination)
+                await smtp.SendMailAsync(email);
+            }
+            catch (Exception e)
             {
-                Subject = message.Subject,
-                IsBodyHtml = true,
-                Body = message.Body
-            })
-            {
-                try
-                {
-                    await smtp.SendMailAsync(email);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                    await Task.FromResult(0);
-                }
-            };
-        }
+                Console.WriteLine(e.Message);
+                await Task.FromResult(0);
+            }
+        };
+    }
 
 
-        public class SmsService : IIdentityMessageService
+    public class SmsService : IIdentityMessageService
         {
             public Task SendAsync(IdentityMessage message)
             {
