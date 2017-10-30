@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using cmcglynn_financialPortal.Models;
 using cmcglynn_financialPortal.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 
 namespace cmcglynn_financialPortal.Controllers
 {
@@ -48,14 +49,17 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Description,Name,Date,Income,Expenses,Difference,BudgetCategory")] HouseHold houseHold)
+        public ActionResult Create([Bind(Include = "Id,Name")] HouseHold houseHold)
         {
-            if (ModelState.IsValid)
-            {
-                db.HouseHold.Add(houseHold);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            HouseHold household = new HouseHold();
+            var user = db.Users.Find(User.Identity.GetUserId());
+            //if (ModelState.IsValid)
+            //{
+            //    household.Users.Add(user);
+            //    db.HouseHold.Add(houseHold);
+            //    db.SaveChanges();
+            //    return RedirectToAction("Index", "HouseHolds");
+            //}
 
             return View(houseHold);
         }

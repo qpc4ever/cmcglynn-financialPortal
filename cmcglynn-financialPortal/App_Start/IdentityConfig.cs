@@ -14,48 +14,51 @@ using cmcglynn_financialPortal.Models;
 using System.Web.Configuration;
 using System.Net.Mail;
 using System.Net;
+using cmcglynn_financialPortal;
 
 namespace cmcglynn_financialPortal
 {
-    public async Task SendAsync(IdentityMessage message)
+    public class EmailService : IIdentityMessageService
     {
-        var GmailUsername = WebConfigurationManager.AppSettings["username"];
-        var GmailPassword = WebConfigurationManager.AppSettings["password"];
-        var host = WebConfigurationManager.AppSettings["host"];
-        int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
+        public async Task SendAsync(IdentityMessage message)
+        {
+            var GmailUsername = WebConfigurationManager.AppSettings["username"];
+            var GmailPassword = WebConfigurationManager.AppSettings["password"];
+            var host = WebConfigurationManager.AppSettings["host"];
+            int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
 
-        using (var smtp = new SmtpClient()
-        {
-            Host = host,
-            Port = port,
-            EnableSsl = true,
-            DeliveryMethod = SmtpDeliveryMethod.Network,
-            UseDefaultCredentials = false,
-            Credentials = new NetworkCredential(GmailUsername, GmailPassword)
-        })
-
-        using (var email = new MailMessage("cmcglynn-financialPortal<qpc4ever@gmail.com>",
-               message.Destination)
-        {
-            Subject = message.Subject,
-            IsBodyHtml = true,
-            Body = message.Body
-        })
-        {
-            try
+            using (var smtp = new SmtpClient()
             {
-                await smtp.SendMailAsync(email);
-            }
-            catch (Exception e)
+                Host = host,
+                Port = port,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(GmailUsername, GmailPassword)
+            })
+
+            using (var email = new MailMessage("cmcglynn-financialPortal<qpc4ever@gmail.com>",
+                   message.Destination)
             {
-                Console.WriteLine(e.Message);
-                await Task.FromResult(0);
-            }
-        };
-    }
+                Subject = message.Subject,
+                IsBodyHtml = true,
+                Body = message.Body
+            })
+            {
+                try
+                {
+                    await smtp.SendMailAsync(email);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    await Task.FromResult(0);
+                }
+            };
+        }
 
 
-    public class SmsService : IIdentityMessageService
+        public class SmsService : IIdentityMessageService
         {
             public Task SendAsync(IdentityMessage message)
             {

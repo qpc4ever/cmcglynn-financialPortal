@@ -19,5 +19,7 @@ namespace cmcglynn_financialPortal.Models
         [Required]
         [AllowHtml]
         public string Body { get; set; }
+        [Required]
+        public string EmailTo { get; set; }
     }
 }

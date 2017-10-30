@@ -15,6 +15,7 @@ using System.IO;
 namespace cmcglynn_financialPortal.Controllers
 {
     [Authorize]
+    [RequireHttps]
     public class AccountController : Universal
     {
         private ApplicationSignInManager _signInManager;
