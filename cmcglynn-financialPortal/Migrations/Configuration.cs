@@ -30,7 +30,7 @@ namespace cmcglynn_financialPortal.Migrations
                 }, "Qpc4ever!");
             }
             var userId = userManager.FindByEmail("qpc4ever@gmail.com").Id;
-            userManager.AddToRole(userId, "Admin");
+            //userManager.AddToRole(userId);
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

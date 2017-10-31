@@ -13,6 +13,7 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <NameOfLastUsedPublishProfile>cmcglynn-budgeter - Web Deploy</NameOfLastUsedPublishProfile>
     <IISExpressSSLPort>44332</IISExpressSSLPort>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

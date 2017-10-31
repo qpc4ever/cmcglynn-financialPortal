@@ -49,7 +49,7 @@ namespace cmcglynn_financialPortal.Controllers
                 {
                     var body = "<p>Email From: <bold>{0}</bold>({1})</p><p>Message:</p><p>{2}</p>";
                     var from = "MyPortfolio<qpc4ever@gmail.com>";
-                    model.Body = "This is a message from your Admin";
+                    model.Body = "Invite to join HouseHold";
 
                     //var assignedUser = db.Users.Find(ticket).AssignedUserId);
                     //var emailTo = assignedUser.Email;
@@ -96,17 +96,26 @@ namespace cmcglynn_financialPortal.Controllers
             var user = db.Users.Find(User.Identity.GetUserId());
             await ControllerContext.HttpContext.RefreshAuthentication(user);
             return View();
+
+
 }
         public ActionResult CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold model)
         {
             //Implementation for creating and joining household
-             HouseHold household = new HouseHold();
+            HouseHold household = new HouseHold();
+            //var HouseHold = db.HouseHold.Include(h => h.AssignToUserId);
             var user = db.Users.Find(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
                 household.Users.Add(user);
                 db.HouseHold.Add(model);
                 db.SaveChanges();
+
+                var uId = User.Identity.GetUserId();
+
+                var HouseHold = db.HouseHold.First(x => x.Name.Equals(model.Name));
+                var hId = household.Id;
+                //AssignToUserId.HouseHold(uId, hId);
                 return RedirectToAction("Index", "HouseHolds");
             }
 

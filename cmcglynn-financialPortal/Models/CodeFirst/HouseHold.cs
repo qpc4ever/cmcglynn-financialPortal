@@ -15,9 +15,9 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
 
         public int Id { get; set; }
         public string Name { get; set; }
-     
-
        
+
+
         public virtual ICollection<ApplicationUser> Users { get; set; }
         public virtual ICollection<Accounts> Accounts { get; set; }
         public virtual ICollection<Budgets> Budgets { get; set; }
