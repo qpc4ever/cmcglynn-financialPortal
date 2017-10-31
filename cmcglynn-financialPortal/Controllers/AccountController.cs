@@ -154,9 +154,9 @@ namespace cmcglynn_financialPortal.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var timezones = TimeZoneInfo.GetSystemTimeZones();
-                var defaulttimezone = TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time");
-                ViewBag.TimeZone = new SelectList(timezones, "Id", "Id", defaulttimezone);
+                //var timezones = TimeZoneInfo.GetSystemTimeZones();
+                //var defaulttimezone = TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time");
+                //ViewBag.TimeZone = new SelectList(timezones, "Id", "Id", defaulttimezone);
                 //return View(model);
             }
 

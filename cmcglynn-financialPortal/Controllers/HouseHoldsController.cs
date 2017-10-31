@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using cmcglynn_financialPortal.Models;
 using cmcglynn_financialPortal.Models.CodeFirst;
 using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 
 namespace cmcglynn_financialPortal.Controllers
 {
@@ -43,23 +44,39 @@ namespace cmcglynn_financialPortal.Controllers
         {
             return View();
         }
+        [Authorize]
+        public ActionResult InvitationSent()
+        {
+            return View();
+        }
+
 
         // POST: HouseHolds/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] HouseHold houseHold)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
         {
             HouseHold household = new HouseHold();
             var user = db.Users.Find(User.Identity.GetUserId());
-            //if (ModelState.IsValid)
-            //{
-            //    household.Users.Add(user);
-            //    db.HouseHold.Add(houseHold);
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index", "HouseHolds");
-            //}
+            if (ModelState.IsValid)
+            {
+               
+                db.HouseHold.Add(houseHold);
+                db.SaveChanges();
+
+                user.HouseHoldId = household.Id;
+                db.SaveChanges();
+
+                var uId = User.Identity.GetUserId();
+                //var household = db.Households.First(x => x.Name.Equals(model.Name));
+                var hId = household.Id;
+                
+
+                await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));   //needs to be in leave and join post action
+                return RedirectToAction("Index", "HouseHolds");
+            }
 
             return View(houseHold);
         }

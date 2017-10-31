@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "ChangeUserInfo";
 }
 
 <h2>Index</h2>
@@ -12,7 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayNameFor(model => model.AccountType.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HouseHold.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
@@ -29,13 +33,28 @@
         <th>
             @Html.DisplayNameFor(model => model.TransactionsId)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Open)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Closed)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.AccountType.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HouseHold.Name)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
@@ -51,6 +70,18 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransactionsId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Open)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Closed)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

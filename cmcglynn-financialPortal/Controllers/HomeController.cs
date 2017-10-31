@@ -113,9 +113,6 @@ namespace cmcglynn_financialPortal.Controllers
 
                 var uId = User.Identity.GetUserId();
 
-                var HouseHold = db.HouseHold.First(x => x.Name.Equals(model.Name));
-                var hId = household.Id;
-                //AssignToUserId.HouseHold(uId, hId);
                 return RedirectToAction("Index", "HouseHolds");
             }
 

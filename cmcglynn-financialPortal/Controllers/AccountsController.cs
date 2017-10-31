@@ -11,15 +11,14 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    [Authorize]
-    public class AccountsController : Universal
+    public class AccountsController : Controller
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Accounts
         public ActionResult Index()
         {
-            var accounts = db.Accounts.Include(a => a.HouseHold);
+            var accounts = db.Accounts.Include(a => a.AccountType).Include(a => a.HouseHold);
             return View(accounts.ToList());
         }
 
@@ -41,7 +40,8 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Accounts/Create
         public ActionResult Create()
         {
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description");
+            ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name");
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name");
             return View();
         }
 
@@ -50,7 +50,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AccountName,Type,HouseHoldId,AccountBalance,Reconcialed,TransactionsId")] Accounts accounts)
+        public ActionResult Create([Bind(Include = "Id,Name,Type,HouseHoldId,Balance,Reconcialed,TransactionsId,AccountTypeId,Open,Description,Email,Closed")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,8 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", accounts.HouseHoldId);
+            ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name", accounts.AccountTypeId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", accounts.HouseHoldId);
             return View(accounts);
         }
 
@@ -75,7 +76,8 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", accounts.HouseHoldId);
+            ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name", accounts.AccountTypeId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", accounts.HouseHoldId);
             return View(accounts);
         }
 
@@ -84,7 +86,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,AccountName,Type,HouseHoldId,AccountBalance,Reconcialed,TransactionsId")] Accounts accounts)
+        public ActionResult Edit([Bind(Include = "Id,Name,Type,HouseHoldId,Balance,Reconcialed,TransactionsId,AccountTypeId,Open,Description,Email,Closed")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +94,8 @@ namespace cmcglynn_financialPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", accounts.HouseHoldId);
+            ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name", accounts.AccountTypeId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", accounts.HouseHoldId);
             return View(accounts);
         }
 

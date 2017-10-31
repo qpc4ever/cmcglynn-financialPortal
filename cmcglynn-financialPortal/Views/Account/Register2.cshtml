@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model cmcglynn_financialPortal.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -8,14 +14,14 @@
     <!-- Page title -->
     <title>LUNA | Responsive Admin Theme</title>
     <!-- Vendor styles -->
-    <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="vendor/animate.css/animate.css" />
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/Assets/vendor/fontawesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="~/Assets/vendor/animate.css/animate.css" />
+    <link rel="stylesheet" href="~/Assets/vendor/bootstrap/css/bootstrap.css" />
     <!-- App styles -->
-    <link rel="stylesheet" href="styles/pe-icons/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="styles/pe-icons/helper.css" />
-    <link rel="stylesheet" href="styles/stroke-icons/style.css" />
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="~/Assets/styles/pe-icons/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="~/Assets/styles/pe-icons/helper.css" />
+    <link rel="stylesheet" href="~/Assets/styles/stroke-icons/style.css" />
+    <link rel="stylesheet" href="~/Assets/styles/style.css">
 </head>
 <body class="blank">
     <!-- Wrapper-->
@@ -24,7 +30,7 @@
         <!-- Main content-->
         <section class="content">
             <div class="back-link">
-                <a href="index.html" class="btn btn-accent">Back to Dashboard</a>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-accent">Back to Dashboard</a>
             </div>
             <div class="container-center lg animated slideInDown">
 
@@ -46,7 +52,7 @@
                         <form action="index.html" id="loginForm" novalidate>
                             <div class="row">
                                 <div class="form-group col-lg-6">
-                                    <label>First Name</label> 
+                                    <label>First Name</label>
                                     <input name="FirstName" type="" class="form-control" />
                                     <span class="help-block small">Your First Name</span>
                                 </div>
@@ -90,10 +96,14 @@
     </div>
     <!-- End wrapper-->
     <!-- Vendor scripts -->
-    <script src="vendor/pacejs/pace.min.js"></script>
-    <script src="vendor/jquery/dist/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Assets/vendor/pacejs/pace.min.js"></script>
+    <script src="~/Assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="~/Assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <!-- App scripts -->
-    <script src="scripts/luna.js"></script>
+    <script src="~/Assets/scripts/luna.js"></script>
 </body>
-</html>
+</html>}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
