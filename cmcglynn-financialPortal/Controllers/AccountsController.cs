@@ -50,10 +50,12 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Type,HouseHoldId,Balance,Reconcialed,TransactionsId,AccountTypeId,Open,Description,Email,Closed")] Accounts accounts)
+        public ActionResult Create([Bind(Include = "Id,Name,Type,HouseHoldId,Balance,Reconcialed,TransactionsId,AccountTypeId,Description,Email,Closed")] Accounts accounts)
         {
             if (ModelState.IsValid)
             {
+                
+                accounts.Open = DateTime.Now;
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -97,21 +97,24 @@ namespace cmcglynn_financialPortal.Controllers
             await ControllerContext.HttpContext.RefreshAuthentication(user);
             return View();
 
-
-}
-        public ActionResult CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold model)
+            await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));
+        }
+        public ActionResult CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold household)
         {
             //Implementation for creating and joining household
-            HouseHold household = new HouseHold();
-            //var HouseHold = db.HouseHold.Include(h => h.AssignToUserId);
-            var user = db.Users.Find(User.Identity.GetUserId());
+           
+           
             if (ModelState.IsValid)
+
             {
-                household.Users.Add(user);
-                db.HouseHold.Add(model);
+                var user = db.Users.Find(User.Identity.GetUserId());
+
+
+                user.HouseHoldId = household.Id;
+                db.HouseHold.Add(household);
                 db.SaveChanges();
 
-                var uId = User.Identity.GetUserId();
+
 
                 return RedirectToAction("Index", "HouseHolds");
             }

@@ -47,6 +47,7 @@
                     <form class="navbar-form navbar-left">
                         <input type="text" class="form-control" placeholder="Search data for analysis" style="width: 175px">
                     </form>
+                    
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="~/Assets/versions.html">
@@ -54,13 +55,15 @@
                                 <span class="label label-warning pull-right">2</span>
                             </a>
                         </li>
-                        <li class=" profil-link">
-                            @*<a href="~/Assets/login.html">*@
-                                <span class="profile-address">@Html.Partial("_LoginPartial")</span>
-                                <img src="~/Assets/@ViewBag.ProfilePic" class="img-circle" alt="">
+                        <li class="profil-link">
+
+                            <a>
+                                <span class="profile-address"></span>
+                                <img src="@ViewBag.ProfilePic" class="img-circle" alt="">
                             </a>
                         </li>
                     </ul>
+                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </nav>
@@ -73,7 +76,7 @@
                         Main
                     </li>
                     <li class="active">
-                        <a href="~/Assets/index.html">Dashboard</a>
+                        <a href="@Url.Action("Index", "Home")">Dashboard</a>
                     </li>
                     <li>
                         <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false">

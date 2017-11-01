@@ -19,9 +19,11 @@ namespace cmcglynn_financialPortal.Controllers
         //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: HouseHolds
+        [AuthorizeHouseHoldRequired]
         public ActionResult Index()
         {
-            return View(db.HouseHold.ToList());
+            var user = db.Users.Find(User.Identity.GetUserId());
+            return View(user.HouseHold);
         }
 
         // GET: HouseHolds/Details/5
@@ -56,29 +58,28 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Created,Updated")] HouseHold household)
         {
-            HouseHold household = new HouseHold();
-            var user = db.Users.Find(User.Identity.GetUserId());
+            
             if (ModelState.IsValid)
             {
                
-                db.HouseHold.Add(houseHold);
-                db.SaveChanges();
+               
+
+                var user = db.Users.Find(User.Identity.GetUserId());
+                
 
                 user.HouseHoldId = household.Id;
+                db.HouseHold.Add(household);
                 db.SaveChanges();
 
-                var uId = User.Identity.GetUserId();
-                //var household = db.Households.First(x => x.Name.Equals(model.Name));
-                var hId = household.Id;
                 
 
                 await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));   //needs to be in leave and join post action
                 return RedirectToAction("Index", "HouseHolds");
             }
 
-            return View(houseHold);
+            return View(household);
         }
 
         // GET: HouseHolds/Edit/5

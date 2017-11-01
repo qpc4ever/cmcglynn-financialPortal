@@ -1,12 +1,26 @@
-﻿@model IEnumerable<cmcglynn_financialPortal.Models.CodeFirst.HouseHold>
+﻿@model cmcglynn_financialPortal.Models.CodeFirst.HouseHold
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
-<p>
+@if (Model.Accounts.Count() == 0)
+{
+    <p>Before viewing information associated with your household, you must create an account href="@Url.Action("Create", "Accounts")".</p>
+}
+else
+{
+    if (Model.Accounts.SelectMany(a => a.Transactions).Count() == 0)
+    {
+        <p>One last step: click the "new transaction" button to add a transaction.</p>
+    }
+    else
+    {
+        
+    }
+}
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -34,4 +48,4 @@
     </tr>
 }
 
-</table>
+</table>*@
