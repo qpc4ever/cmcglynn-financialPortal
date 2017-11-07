@@ -22,6 +22,11 @@ namespace cmcglynn_financialPortal.Models
                 ViewBag.LastName = user.LastName;
                 ViewBag.FullName = user.FullName;
                 ViewBag.ProfilePic = user.ProfilePic;
+
+                if (user.HouseHoldId != null)
+                {
+                    ViewBag.HouseHold = user.HouseHold.Name;
+                }
             }
 
             base.OnActionExecuted(filterContext);

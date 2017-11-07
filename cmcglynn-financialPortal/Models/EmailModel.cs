@@ -9,17 +9,13 @@ namespace cmcglynn_financialPortal.Models
 {
     public class EmailModel
     {
-        [Required, Display(Name = "Name")]
-        public string FromName { get; set; }
-        [Required, Display(Name = "Email"), EmailAddress]
-
-        public string FromEmail { get; set; }
-
-        public string Subject { get; set; }
         [Required]
-        [AllowHtml]
         public string Body { get; set; }
-        [Required]
+        [Required, Display(Name = "Email"), EmailAddress]
         public string EmailTo { get; set; }
+        public int HouseHoldId { get; set; }
+        public string FromName { get; set; }
+        public string FromEmail { get; set; }
+        public int Id { get; set; }
     }
 }

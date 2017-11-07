@@ -17,7 +17,10 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public bool ReconciledStatus { get; set; }
         public decimal ReconciledAmount { get; set; }
         public DateTime TransactionDate { get; set; }
-        public DateTime ReconciliationDate { get; set; }
+        public DateTime? ReconciliationDate { get; set; }
+        public decimal Credits { get; set; }
+        public decimal Debits { get; set; }
+        public DateTime PostedDate { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
         public virtual Category Category { get; set; }

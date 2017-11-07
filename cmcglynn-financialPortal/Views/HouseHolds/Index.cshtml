@@ -1,10 +1,10 @@
 ﻿@model cmcglynn_financialPortal.Models.CodeFirst.HouseHold
 
 @{
-    ViewBag.Title = "Index";
+//ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+
 @if (Model.Accounts.Count() == 0)
 {
     <p>Before viewing information associated with your household, you must create an account href="@Url.Action("Create", "Accounts")".</p>
@@ -17,7 +17,26 @@ else
     }
     else
     {
-        
+        <h3 class="m-b-xs">
+            @if (@ViewBag.HouseHold != null)
+            {
+                @ViewBag.HouseHold
+            }
+            else
+            {
+                <span>NO HOUSEHOLD</span>
+            }
+        </h3>
+
+
+
+
+
+
+
+
+
+
     }
 }
 @*<p>

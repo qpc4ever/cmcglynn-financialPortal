@@ -50,7 +50,8 @@ namespace cmcglynn_financialPortal.Controllers
                     var body = "<p>Email From: <bold>{0}</bold>({1})</p><p>Message:</p><p>{2}</p>";
                     var from = "MyPortfolio<qpc4ever@gmail.com>";
                     model.Body = "Invite to join HouseHold";
-
+                    var To = model.EmailTo;
+                    
                     //var assignedUser = db.Users.Find(ticket).AssignedUserId);
                     //var emailTo = assignedUser.Email;
 

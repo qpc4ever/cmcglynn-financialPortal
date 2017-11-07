@@ -57,7 +57,37 @@ namespace cmcglynn_financialPortal
             };
         }
 
+        public class PersonalEmail
+        {
+            public async Task SendAsync(MailMessage message)
+            {
+                var GmailUsername = WebConfigurationManager.AppSettings["username"];
+                var GmailPassword = WebConfigurationManager.AppSettings["password"];
+                var host = WebConfigurationManager.AppSettings["host"];
+                int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
 
+                using (var smtp = new SmtpClient()
+                {
+                    Host = host,
+                    Port = port,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(GmailUsername, GmailPassword)
+                })
+                {
+                    try
+                    {
+                        await smtp.SendMailAsync(message);    // most important line that actually sends EMAIL
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        await Task.FromResult(0);
+                    }
+                };
+            }
+        }
         public class SmsService : IIdentityMessageService
         {
             public Task SendAsync(IdentityMessage message)
@@ -122,6 +152,7 @@ namespace cmcglynn_financialPortal
                 return manager;
             }
         }
+
 
         // Configure the application sign-in manager which is used in this application.
         public class ApplicationSignInManager : SignInManager<ApplicationUser, string>

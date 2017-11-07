@@ -10,6 +10,8 @@ using cmcglynn_financialPortal.Models;
 using cmcglynn_financialPortal.Models.CodeFirst;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using static cmcglynn_financialPortal.EmailService;
 
 namespace cmcglynn_financialPortal.Controllers
 {
@@ -82,6 +84,83 @@ namespace cmcglynn_financialPortal.Controllers
             return View(household);
         }
 
+        // GET: HouseHolds/Join
+        public ActionResult Join(int? Id)
+        {
+            if (Id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HouseHold household = db.HouseHold.Find(Id);
+            if (household == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(household);
+        }
+
+        // GET: HouseHolds/Invite
+        public ActionResult Invite()
+        {
+            return View();
+        }
+
+        //Post: HouseHolds?Invite
+        [AuthorizeHouseHoldRequired]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Invite(EmailModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var invitee = db.Users.FirstOrDefault(u => u.Email == model.EmailTo);
+                    var me = db.Users.Find(User.Identity.GetUserId());
+                    model.Id = me.HouseHoldId.Value;
+                    if (invitee != null && invitee.HouseHoldId == model.Id)
+                    {
+                        return RedirectToAction("UserAlreadyAssignedToHouseHold");
+                    }
+                    var callbackUrl = "";
+                    if (invitee != null)
+                    {
+                        callbackUrl = Url.Action("JoinHouseHold", "HouseHolds", new { id = model.Id }, protocol: Request.Url.Scheme);
+                    }
+                    else
+                    {
+                        callbackUrl = Url.Action("Register", "Account", new { id = model.Id }, protocol: Request.Url.Scheme);
+                    }
+                    var body = "<p>Email From: <bold>{0}</bold></p><p>Message:</p><p>{1}</p><p>{2}</p>";
+                    var from = "MyPortfolio<"+ me.Email +">";
+                    var subject = "Invite to join HouseHold";
+                    var to = model.EmailTo;
+
+                    var email = new MailMessage(from, to)
+                    {
+                        Subject = subject,
+                        Body = string.Format(body, me.FullName, model.Body, "Please click on the link below to confirm invitation: <br /> <a href=\" " + callbackUrl + " \">Link to invitation.</a>"),
+                    IsBodyHtml = true
+                    };
+
+                    var svc = new PersonalEmail();
+                    await svc.SendAsync(email);
+                    return RedirectToAction("InviteSent");
+                }
+                catch ( Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    await Task.FromResult(0);
+                }
+            }
+            return View(model);
+        }
+        //[Authorize]
+        //public ActionResult InvitationSent()
+        //{
+        //    return View();
+        //}
         // GET: HouseHolds/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -107,6 +186,22 @@ namespace cmcglynn_financialPortal.Controllers
             if (ModelState.IsValid)
             {
                 db.Entry(houseHold).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(houseHold);
+        }
+
+        // POST: HouseHolds/Leave
+       
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Leave([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.Users.Find(User.Identity.GetUserId());
+                user.HouseHoldId = null;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

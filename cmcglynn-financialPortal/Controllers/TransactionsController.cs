@@ -18,7 +18,7 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Description).Include(t => t.Amount).Include(t => t.Name);
+            var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category);
             return View(transactions.ToList());
         }
 
@@ -40,7 +40,9 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description");
+            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name");
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             return View();
         }
 
@@ -49,7 +51,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PostedDate,TransactionDate,DateRange,AccountType,User,Catagory,Credit,Debit,ReconciliationStatus,HouseHoldId,AmountRange,Receipt,BanksId")] Transactions transactions)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,Credits,Debits,PostedDate")] Transactions transactions)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +60,9 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
+            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             return View(transactions);
         }
 
@@ -74,7 +78,9 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
+            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             return View(transactions);
         }
 
@@ -83,7 +89,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PostedDate,TransactionDate,DateRange,AccountType,User,Catagory,Credit,Debit,ReconciliationStatus,HouseHoldId,AmountRange,Receipt,BanksId")] Transactions transactions)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,Credits,Debits,PostedDate")] Transactions transactions)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +97,9 @@ namespace cmcglynn_financialPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", transactions);
+            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             return View(transactions);
         }
 

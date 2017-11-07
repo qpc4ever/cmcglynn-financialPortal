@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using cmcglynn_financialPortal.Models;
 using static cmcglynn_financialPortal.EmailService;
 using System.IO;
+using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
@@ -138,27 +139,43 @@ namespace cmcglynn_financialPortal.Controllers
         }
 
         //
-        // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
-        {
-            return View();
-        }
+        // GET: /Account/Joining
+        //[AllowAnonymous]
+        //public ActionResult Joining(int? Id)
+        //{
+        //    ViewBag.IsJoining == false;
+        //    HouseHold
+        //    return View();
+        //}
 
         //
+        // GET: /Account/register
+        [AllowAnonymous]
+        public ActionResult Register(int? id)
+        {
+            RegisterViewModel model = new RegisterViewModel();
+
+
+            if (id != null)
+            {
+                HouseHold household = db.HouseHold.Find(id);
+                if (household != null)
+                {
+                    model.HouseHoldId = id;
+                    ViewBag.HouseHoldName = household.Name;
+                }
+            }
+            return View(model);
+        }
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image)
         {
-            if (!ModelState.IsValid)
-            {
-                //var timezones = TimeZoneInfo.GetSystemTimeZones();
-                //var defaulttimezone = TimeZoneInfo.FindSystemTimeZoneById("US Eastern Standard Time");
-                //ViewBag.TimeZone = new SelectList(timezones, "Id", "Id", defaulttimezone);
-                //return View(model);
-            }
+           
+
+            
 
             var pPic = "/Assets/images/QPCPodcast3NoTextCrop.png";
 
@@ -192,7 +209,15 @@ namespace cmcglynn_financialPortal.Controllers
                     image.SaveAs(Path.Combine(Server.MapPath("~/Assets/ProfilePics/"), fileName + Path.GetExtension(image.FileName)));
                 }
               
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+              
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.Email,
+                        Email = model.Email,
+                        FirstName = model.FirstName,
+                        LastName = model.LastName,
+                        HouseHoldId = model.HouseHoldId,
+                    };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

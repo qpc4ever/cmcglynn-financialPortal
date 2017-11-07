@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "ChangeUserInfo";
 }
 
 <h2>Details</h2>
@@ -12,19 +11,67 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.HouseHold.Description)
+            @Html.DisplayNameFor(model => model.Accounts.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.HouseHold.Description)
+            @Html.DisplayFor(model => model.Accounts.Name)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PostedDate)
+            @Html.DisplayNameFor(model => model.Author.FirstName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PostedDate)
+            @Html.DisplayFor(model => model.Author.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReconciledStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReconciledStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReconciledAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReconciledAmount)
         </dd>
 
         <dt>
@@ -36,83 +83,35 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DateRange)
+            @Html.DisplayNameFor(model => model.ReconciliationDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DateRange)
+            @Html.DisplayFor(model => model.ReconciliationDate)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AccountType)
+            @Html.DisplayNameFor(model => model.Credits)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AccountType)
+            @Html.DisplayFor(model => model.Credits)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            @Html.DisplayNameFor(model => model.Debits)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.User)
+            @Html.DisplayFor(model => model.Debits)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Catagory)
+            @Html.DisplayNameFor(model => model.PostedDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Catagory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Credit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Credit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Debit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Debit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReconciliationStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReconciliationStatus)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AmountRange)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AmountRange)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Receipt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Receipt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BanksId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BanksId)
+            @Html.DisplayFor(model => model.PostedDate)
         </dd>
 
     </dl>
