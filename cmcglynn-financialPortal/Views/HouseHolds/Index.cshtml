@@ -7,17 +7,17 @@
 
 @if (Model.Accounts.Count() == 0)
 {
-    <p>Before viewing information associated with your household, you must create an account href="@Url.Action("Create", "Accounts")".</p>
+    <h2>Before viewing information associated with your household, you must create an account <a href="@Url.Action("Create", "Accounts")">here.</a></h2>
 }
 else
 {
     if (Model.Accounts.SelectMany(a => a.Transactions).Count() == 0)
     {
-        <p>One last step: click the "new transaction" button to add a transaction.</p>
+        <h2>One last step: click the "new transaction" button to add a transaction.</h2>
     }
     else
     {
-        <h3 class="m-b-xs">
+        <h2 class="m-b-xs">
             @if (@ViewBag.HouseHold != null)
             {
                 @ViewBag.HouseHold
@@ -26,7 +26,7 @@ else
             {
                 <span>NO HOUSEHOLD</span>
             }
-        </h3>
+        </h2>
 
 
 

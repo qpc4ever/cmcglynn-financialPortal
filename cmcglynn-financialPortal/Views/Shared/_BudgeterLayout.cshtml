@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <img src="~/Assets/" />
-  
+
     <link rel="icon" href="~/Assets/images/PNGPIX-COM-Dollar-Sign-PNG-Image.png" type="image/x-icon" style="">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -37,11 +37,11 @@
                         </div>
                     </div>
                     <div>
-                        
+
 
                     </div>
                     <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;text-decoration: underline; font-family:'Goudy Old Style'; padding-bottom:10px;">
-                        QUICK BUDGETER<i ></i>                      
+                        QUICK BUDGETER<i></i>
                         <span></span>
                     </a>
                 </div>
@@ -86,7 +86,8 @@
                         <a href="@Url.Action("Index", "Home")"><i class="pe-7s-monitor text-accent">&nbsp;&nbsp;</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false"><i class="pe-7s-home text-accent">&nbsp;&nbsp;</i>
+                        <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false">
+                            <i class="pe-7s-home text-accent">&nbsp;&nbsp;</i>
                             Households<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
                         <ul id="monitoring" class="nav nav-second collapse">
@@ -95,6 +96,9 @@
                             @*<li><a href="~/Assets/activity.html"> Activity</a></li>*@
                         </ul>
                     </li>
+                    @if (@ViewBag.HouseHold != null)
+            {
+                       
                     <li>
                         <a href="~/Assets/#uielements" data-toggle="collapse" aria-expanded="false">
                             <i class="pe-7s-piggy text-accent">&nbsp;&nbsp;</i>
@@ -106,96 +110,101 @@
                             @*<li><a href="~/Assets/activity.html"> Activity</a></li>*@
                         </ul>
                     </li>
+                    }
+                    else
+                    {
+                        @*<span>NO HOUSEHOLD</span>*@
+                    }
                     @*<li class="nav-category">
-                        UI Elements
-                    </li>
-                    <li>
-                        <a href="~/Assets/#uielements" data-toggle="collapse" aria-expanded="false">
-                            General<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>*@
-                        @*<ul id="uielements" class="nav nav-second collapse">
-                            <li><a href="~/Assets/panels.html">Panels</a></li>
-                            <li><a href="~/Assets/typography.html">Typography</a></li>
-                            <li><a href="~/Assets/icons.html">Icons</a></li>
-                            <li><a href="~/Assets/buttons.html">Buttons</a></li>
-                            <li><a href="~/Assets/tabs.html">Tabs</a></li>
-                            <li><a href="~/Assets/modals.html">Modals</a></li>
-                            <li><a href="~/Assets/alerts.html">Alerts</a></li>
-                            <li><a href="~/Assets/loaders.html">Loaders</a></li>
-                            <li><a href="~/Assets/gridSystem.html">Grid system</a></li>
-                            <li><a href="~/Assets/draggable.html">Draggable</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/Assets/#tables" data-toggle="collapse" aria-expanded="false">
-                            Tables design<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>
-                        <ul id="tables" class="nav nav-second collapse">
-                            <li><a href="~/Assets/tableStyles.html">Table styles</a></li>
-                            <li><a href="~/Assets/dataTables.html">Data Tables</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/Assets/#forms" data-toggle="collapse" aria-expanded="false">
-                            From controls <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>
-                        <ul id="forms" class="nav nav-second collapse">
-                            <li><a href="~/Assets/formElements.html"> Basic elements </a></li>
-                            <li><a href="~/Assets/autocomplete.html"> Autocomplete </a></li>
-                            <li><a href="~/Assets/controls.html"> Selection controls </a></li>
-                            <li><a href="~/Assets/textEditor.html"> Text editor </a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/Assets/#charts" data-toggle="collapse" aria-expanded="false">
-                            Charts and graphs<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>
-                        <ul id="charts" class="nav nav-second collapse">
-                            <li><a href="~/Assets/flotCharts.html">Flot charts</a></li>
-                            <li><a href="~/Assets/chartJs.html">ChartJS</a></li>
-                            <li><a href="~/Assets/sparkline.html">Sparkline</a></li>
-                            <li><a href="~/Assets/datamaps.html">Datamaps</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-category">
-                        App Pages
-                    </li>
-                    <li>
-                        <a href="~/Assets/#extras" data-toggle="collapse" aria-expanded="false">
-                            Basic <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>
-                        <ul id="extras" class="nav nav-second collapse">
-                            <li><a href="~/Assets/profile.html">Profile</a></li>
-                            <li><a href="~/Assets/contacts.html">Contacts</a></li>
-                            <li><a href="~/Assets/projects.html">Projects</a></li>
-                            <li><a href="~/Assets/support.html">Support</a></li>
-                            <li><a href="~/Assets/nestableList.html">List</a></li>
-                            <li><a href="~/Assets/timeline.html">Timeline</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="~/Assets/#common" data-toggle="collapse" aria-expanded="false">
-                            Common <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
-                        </a>
-                        <ul id="common" class="nav nav-second collapse">
-                            <li><a href="~/Assets/login.html">Login</a></li>
-                            <li><a href="~/Assets/register.html">Register</a></li>
-                            <li><a href="~/Assets/forgotPassword.html">Forgot password</a></li>
-                            <li><a href="~/Assets/error.html">Error page</a></li>
-                        </ul>
-                    </li>*@
+                            UI Elements
+                        </li>
+                        <li>
+                            <a href="~/Assets/#uielements" data-toggle="collapse" aria-expanded="false">
+                                General<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>*@
+                    @*<ul id="uielements" class="nav nav-second collapse">
+                                <li><a href="~/Assets/panels.html">Panels</a></li>
+                                <li><a href="~/Assets/typography.html">Typography</a></li>
+                                <li><a href="~/Assets/icons.html">Icons</a></li>
+                                <li><a href="~/Assets/buttons.html">Buttons</a></li>
+                                <li><a href="~/Assets/tabs.html">Tabs</a></li>
+                                <li><a href="~/Assets/modals.html">Modals</a></li>
+                                <li><a href="~/Assets/alerts.html">Alerts</a></li>
+                                <li><a href="~/Assets/loaders.html">Loaders</a></li>
+                                <li><a href="~/Assets/gridSystem.html">Grid system</a></li>
+                                <li><a href="~/Assets/draggable.html">Draggable</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="~/Assets/#tables" data-toggle="collapse" aria-expanded="false">
+                                Tables design<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>
+                            <ul id="tables" class="nav nav-second collapse">
+                                <li><a href="~/Assets/tableStyles.html">Table styles</a></li>
+                                <li><a href="~/Assets/dataTables.html">Data Tables</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="~/Assets/#forms" data-toggle="collapse" aria-expanded="false">
+                                From controls <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>
+                            <ul id="forms" class="nav nav-second collapse">
+                                <li><a href="~/Assets/formElements.html"> Basic elements </a></li>
+                                <li><a href="~/Assets/autocomplete.html"> Autocomplete </a></li>
+                                <li><a href="~/Assets/controls.html"> Selection controls </a></li>
+                                <li><a href="~/Assets/textEditor.html"> Text editor </a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="~/Assets/#charts" data-toggle="collapse" aria-expanded="false">
+                                Charts and graphs<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>
+                            <ul id="charts" class="nav nav-second collapse">
+                                <li><a href="~/Assets/flotCharts.html">Flot charts</a></li>
+                                <li><a href="~/Assets/chartJs.html">ChartJS</a></li>
+                                <li><a href="~/Assets/sparkline.html">Sparkline</a></li>
+                                <li><a href="~/Assets/datamaps.html">Datamaps</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-category">
+                            App Pages
+                        </li>
+                        <li>
+                            <a href="~/Assets/#extras" data-toggle="collapse" aria-expanded="false">
+                                Basic <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>
+                            <ul id="extras" class="nav nav-second collapse">
+                                <li><a href="~/Assets/profile.html">Profile</a></li>
+                                <li><a href="~/Assets/contacts.html">Contacts</a></li>
+                                <li><a href="~/Assets/projects.html">Projects</a></li>
+                                <li><a href="~/Assets/support.html">Support</a></li>
+                                <li><a href="~/Assets/nestableList.html">List</a></li>
+                                <li><a href="~/Assets/timeline.html">Timeline</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="~/Assets/#common" data-toggle="collapse" aria-expanded="false">
+                                Common <span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
+                            </a>
+                            <ul id="common" class="nav nav-second collapse">
+                                <li><a href="~/Assets/login.html">Login</a></li>
+                                <li><a href="~/Assets/register.html">Register</a></li>
+                                <li><a href="~/Assets/forgotPassword.html">Forgot password</a></li>
+                                <li><a href="~/Assets/error.html">Error page</a></li>
+                            </ul>
+                        </li>*@
                     @*<li>
-                        <a href="~/Assets/versions.html">
-                            <span class="badge pull-right">2</span>
-                            Versions
-                        </a>
-                    </li>*@
+                            <a href="~/Assets/versions.html">
+                                <span class="badge pull-right">2</span>
+                                Versions
+                            </a>
+                        </li>*@
                     <li class="nav-info">
                         <i class="pe pe-7s-cash text-accent"></i>
                         <div class="m-t-xs">
 
-                            <span class="c-white">@*LUNA*@</span> To create a household, click "Household" in the side-bar. Then click "Create/Join." If you want to invite other users to your household, you can invite them via your Household page, which will be selectable in the sidebar under "Household" once you are part of a household.<hr/>
-                            To join a household, click the link in your invitation email, then proceed to the Join section of the Create/Join page. Simply click "Join" and you're all set!<hr/>
+                            <span class="c-white">@*LUNA*@</span> To create a household, click "Household" in the side-bar. Then click "Create/Join." If you want to invite other users to your household, you can invite them via your Household page, which will be selectable in the sidebar under "Household" once you are part of a household.<hr />
+                            To join a household, click the link in your invitation email, then proceed to the Join section of the Create/Join page. Simply click "Join" and you're all set!<hr />
                             Once you're in a household, you will want to link your bank accounts. To do this, click "Accounts" in the side-bar, then click "Add Account."<hr />
                             After you have at least one account linked to your household, you can add a new transaction from anywhere on the site via the "New Transaction" button on the nav-bar.
                         </div>
@@ -213,7 +222,7 @@
                             <div class="view-header">
                                 <div class="pull-right text-right" style="line-height: 14px">
                                     <div>
-                                        <a href="@Url.Action("Create", "Transactions")" class="btn btn-accent" >NEW TRANSACTION</a>
+                                        <a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>
                                     </div>
                                     <small>@*Luna Admin Theme*@<br>@*Dashboard*@<br> <span class="c-white"></span></small>
                                 </div>
@@ -224,7 +233,7 @@
                                     <h3 class="m-b-xs">
                                         @if (@ViewBag.HouseHold != null)
                                         {
-                                         @ViewBag.HouseHold
+                                            @ViewBag.HouseHold
                                         }
                                         else
                                         {

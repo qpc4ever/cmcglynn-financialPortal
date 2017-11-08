@@ -164,11 +164,11 @@ namespace cmcglynn_financialPortal.Controllers
             }
             return View(model);
         }
-        //[Authorize]
-        //public ActionResult InvitationSent()
-        //{
-        //    return View();
-        //}
+       // Get: InviteSent
+        public ActionResult InviteSent()
+        {
+            return View();
+        }
         // GET: HouseHolds/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -199,19 +199,26 @@ namespace cmcglynn_financialPortal.Controllers
             }
             return View(houseHold);
         }
-
+        // Get: HouseHolds/Leave
+        public ActionResult Leave()
+        {
+            var currentHouseHoldId = User.Identity.GetHouseHoldId();
+            var currentHouseHold = db.HouseHold.Find(currentHouseHoldId);
+            return View();
+        }
         // POST: HouseHolds/Leave
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Leave([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
+        public async Task<ActionResult> Leave([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
         {
             if (ModelState.IsValid)
             {
                 var user = db.Users.Find(User.Identity.GetUserId());
                 user.HouseHoldId = null;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                await HttpContext.RefreshAuthentication(user);   //needs to be in leave and join post action
+                return RedirectToAction("Index", "Home");
             }
             return View(houseHold);
         }

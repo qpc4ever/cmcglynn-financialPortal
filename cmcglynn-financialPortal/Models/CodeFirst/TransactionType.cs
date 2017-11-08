@@ -5,11 +5,9 @@ using System.Web;
 
 namespace cmcglynn_financialPortal.Models.CodeFirst
 {
-    public class Frequency
+    public class TransactionType
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-
-       
+        public string Type { get; set; }
     }
 }

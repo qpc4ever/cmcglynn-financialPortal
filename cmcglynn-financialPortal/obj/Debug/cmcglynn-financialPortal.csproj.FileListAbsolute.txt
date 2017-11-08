@@ -94,3 +94,6 @@ C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cm
 C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\bin\Microsoft.AI.Web.xml
 C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\obj\Debug\cmcglynn-financialPortal.dll
 C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\obj\Debug\cmcglynn-financialPortal.pdb
+C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\bin\FluentDateTime.dll
+C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\bin\FluentDateTime.pdb
+C:\Users\demol\Documents\Visual Studio 2017\Projects\cmcglynn-financialPortal\cmcglynn-financialPortal\bin\FluentDateTime.xml

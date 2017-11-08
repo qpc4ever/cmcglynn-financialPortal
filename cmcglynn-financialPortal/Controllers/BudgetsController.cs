@@ -11,7 +11,6 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    [Authorize]
     public class BudgetsController : Universal
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -19,7 +18,7 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Budgets
         public ActionResult Index()
         {
-            var budgets = db.Budgets.Include(b => b.HouseHold);
+            var budgets = db.Budgets.Include(b => b.Author).Include(b => b.Category).Include(b => b.Frequency).Include(b => b.HouseHold);
             return View(budgets.ToList());
         }
 
@@ -41,7 +40,10 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Budgets/Create
         public ActionResult Create()
         {
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description");
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.FrequencyId = new SelectList(db.Frequency, "Id", "Name");
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name");
             return View();
         }
 
@@ -50,7 +52,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,BudgetType,BudgetCategory,BudgetsItem,Frequency,Amount,Description,HouseHoldId,Transaction,Account,User,IncomeId,ExpensesId")] Budgets budgets)
+        public ActionResult Create([Bind(Include = "Id,AuthorId,CategoryId,FrequencyId,Description,HouseHoldId,Item")] Budgets budgets)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,10 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description");
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", budgets.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", budgets.CategoryId);
+            ViewBag.FrequencyId = new SelectList(db.Frequency, "Id", "Name", budgets.FrequencyId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", budgets.HouseHoldId);
             return View(budgets);
         }
 
@@ -75,7 +80,10 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", budgets.HouseHoldId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", budgets.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", budgets.CategoryId);
+            ViewBag.FrequencyId = new SelectList(db.Frequency, "Id", "Name", budgets.FrequencyId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", budgets.HouseHoldId);
             return View(budgets);
         }
 
@@ -84,7 +92,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,BudgetType,BudgetCategory,BudgetsItem,Frequency,Amount,Description,HouseHoldId,Transaction,Account,User,IncomeId,ExpensesId")] Budgets budgets)
+        public ActionResult Edit([Bind(Include = "Id,AuthorId,CategoryId,FrequencyId,Description,HouseHoldId,Item")] Budgets budgets)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +100,10 @@ namespace cmcglynn_financialPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Description", budgets.HouseHoldId);
+            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", budgets.AuthorId);
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", budgets.CategoryId);
+            ViewBag.FrequencyId = new SelectList(db.Frequency, "Id", "Name", budgets.FrequencyId);
+            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", budgets.HouseHoldId);
             return View(budgets);
         }
 

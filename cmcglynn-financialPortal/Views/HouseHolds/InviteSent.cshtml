@@ -1,17 +1,33 @@
 ﻿
+@model cmcglynn_financialPortal.Models.CodeFirst.HouseHold
 @{
-    Layout = null;
+    ViewBag.Title = "Invite Others";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>InviteSent</title>
-</head>
-<body>
-    <div> 
+<h2>Invite Others</h2>
+
+<hr />
+@*@using (Html.BeginForm("Join", "Households", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
+    <input name="id" value="@Model.Id" hidden />
+    <div class="form-group">
+        <p>Your invitation has been sent!</p>
+        <p><strong>@Model.Name</strong></p>
     </div>
-</body>
-</html>
+    @*<div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Yes" class="btn btn-default" />
+        </div>
+    </div>
+}*@
+@*<a href="@Url.Action("Join", "Home")" class="btn btn-accent">Join</a>*@
+<div>
+    @Html.ActionLink("Back to Household", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

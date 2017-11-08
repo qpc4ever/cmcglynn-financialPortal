@@ -11,14 +11,14 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    public class TransactionsController : Controller
+    public class TransactionsController : Universal
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        //private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category);
+            var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category).Include(t => t.TransactionType);
             return View(transactions.ToList());
         }
 
@@ -43,6 +43,7 @@ namespace cmcglynn_financialPortal.Controllers
             ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name");
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
+            ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type");
             return View();
         }
 
@@ -51,7 +52,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,Credits,Debits,PostedDate")] Transactions transactions)
+        public ActionResult Create([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,TransactionTypeId,PostedDate,Void")] Transactions transactions)
         {
             if (ModelState.IsValid)
             {
@@ -63,6 +64,7 @@ namespace cmcglynn_financialPortal.Controllers
             ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
+            ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
             return View(transactions);
         }
 
@@ -81,6 +83,7 @@ namespace cmcglynn_financialPortal.Controllers
             ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
+            ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
             return View(transactions);
         }
 
@@ -89,7 +92,7 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,Credits,Debits,PostedDate")] Transactions transactions)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,TransactionTypeId,PostedDate,Void")] Transactions transactions)
         {
             if (ModelState.IsValid)
             {
@@ -100,6 +103,7 @@ namespace cmcglynn_financialPortal.Controllers
             ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
+            ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
             return View(transactions);
         }
 

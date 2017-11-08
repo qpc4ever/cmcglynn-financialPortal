@@ -1,114 +1,74 @@
 ﻿@model cmcglynn_financialPortal.Models.CodeFirst.Budgets
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
 
-<h2>Details</h2>
+<!DOCTYPE html>
 
-<div>
-    <h4>Budgets</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HouseHold.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HouseHold.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BudgetType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BudgetCategory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BudgetsItem)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BudgetsItem)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Frequency)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Frequency)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Amount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Amount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Transaction)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Transaction)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Account)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Account)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.User)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.User)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IncomeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IncomeId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ExpensesId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ExpensesId)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>Budgets</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Author.FirstName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Author.FirstName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Frequency.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Frequency.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.HouseHold.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.HouseHold.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Item)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Item)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
