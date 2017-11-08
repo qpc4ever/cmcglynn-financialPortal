@@ -248,8 +248,14 @@
     <Content Include="Assets\images\a3.jpg" />
     <Content Include="Assets\images\a4.jpg" />
     <Content Include="Assets\images\a5.jpg" />
+    <Content Include="Assets\images\asp-mvc.png" />
+    <Content Include="Assets\images\img-2.jpg" />
+    <Content Include="Assets\images\main-qimg-73742f9afad887900ea786ae2006ba28.png" />
+    <Content Include="Assets\images\net_c.jpg" />
+    <Content Include="Assets\images\PNGPIX-COM-Dollar-Sign-PNG-Image.png" />
     <Content Include="Assets\images\profile.jpg" />
     <Content Include="Assets\images\QPCPodcast3NoTextCrop.png" />
+    <Content Include="Assets\images\ssms_connection_errors-100601651-primary.idge.jpg" />
     <Content Include="Assets\index.html" />
     <Content Include="Assets\loaders.html" />
     <Content Include="Assets\login.html" />
@@ -1486,6 +1492,7 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\Index - Copy.cshtml" />
     <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Home\Join.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
