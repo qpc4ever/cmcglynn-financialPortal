@@ -39,49 +39,7 @@ namespace cmcglynn_financialPortal.Controllers
 
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Contact(EmailModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var body = "<p>Email From: <bold>{0}</bold>({1})</p><p>Message:</p><p>{2}</p>";
-                    var from = "MyPortfolio<qpc4ever@gmail.com>";
-                    model.Body = "Invite to join HouseHold";
-                    var To = model.EmailTo;
-                    
-                    //var assignedUser = db.Users.Find(ticket).AssignedUserId);
-                    //var emailTo = assignedUser.Email;
-
-
-                    var email = new MailMessage(from,
-                        ConfigurationManager.AppSettings["emailto"])
-                    {
-                        Subject = "Portfolio Contact Email",
-                        Body = string.Format(body, model.FromName, model.FromEmail,
-                        model.Body),
-                        IsBodyHtml = true
-                    };
-
-                    //var svc = new PersonalEmail();
-                    //await svc.SendAsync(email);
-
-                    return RedirectToAction("Contact");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    await Task.FromResult(0);
-                }
-            }
-
-
-            return View(model);
-
-
-        }
+        
 
         public ActionResult CustomErrors()
         {
@@ -107,30 +65,27 @@ namespace cmcglynn_financialPortal.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold household)
+        public async Task<ActionResult> CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold household)
         {
             //Implementation for creating and joining household
-
-
             if (ModelState.IsValid)
-
             {
                 var user = db.Users.Find(User.Identity.GetUserId());
 
 
-                user.HouseHoldId = household.Id;
                 db.HouseHold.Add(household);
                 db.SaveChanges();
+                user.HouseHoldId = household.Id;
+                db.SaveChanges();
 
-
-
+                await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));   //needs to be in leave and join post action
                 return RedirectToAction("Index", "HouseHolds");
             }
 
             return View(household);
         }
 
-             [AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Landing()
         {
             return View();

@@ -55,7 +55,6 @@ namespace cmcglynn_financialPortal.Models
         public DbSet<Expenses> Expenses { get; set; }
         public DbSet<Income> Income { get; set; }
         public DbSet<Notifications> Notifications { get; set; }
-        public DbSet<Banks> Banks { get; set; }
         public DbSet<Frequency> Frequency { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<AccountType> AccountType { get; set; }

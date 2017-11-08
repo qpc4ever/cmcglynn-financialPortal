@@ -12,7 +12,7 @@ namespace cmcglynn_financialPortal.Models
         public static int? GetHouseHoldId(this IIdentity user)
         {
             var ClaimsIdentity = (ClaimsIdentity)user;
-            var HouseHoldClaim = ClaimsIdentity.Claims.FirstOrDefault(c => c.Type == "HouseHold");
+            var HouseHoldClaim = ClaimsIdentity.Claims.FirstOrDefault(c => c.Type == "HouseHoldId");
 
             if (HouseHoldClaim != null)
                 return Int32.Parse(HouseHoldClaim.Value);
@@ -22,7 +22,7 @@ namespace cmcglynn_financialPortal.Models
         public static bool IsInHouseHold(this IIdentity user)
         {
             var cUser = (ClaimsIdentity)user;
-            var hid = cUser.Claims.FirstOrDefault(c => c.Type == "HouseHold");
+            var hid = cUser.Claims.FirstOrDefault(c => c.Type == "HouseHoldId");
             return (hid != null && !string.IsNullOrWhiteSpace(hid.Value));
         }
     }

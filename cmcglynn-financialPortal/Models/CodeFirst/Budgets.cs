@@ -18,5 +18,20 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public virtual HouseHold HouseHold { get; set; }
         public virtual Category Category { get; set; }
         public virtual ApplicationUser Author { get; set; }
+
+        public decimal? BudgetAmount
+        {
+            get
+            {
+                if (Category != null)
+                {
+                    return Category.Transactions.Sum(t => t.Amount);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

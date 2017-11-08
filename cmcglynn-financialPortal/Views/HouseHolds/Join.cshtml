@@ -1,0 +1,33 @@
+﻿
+@model cmcglynn_financialPortal.Models.CodeFirst.HouseHold
+@{
+    ViewBag.Title = "Join";
+}
+
+
+<h2>Join HouseHold</h2>
+
+<hr />
+@using (Html.BeginForm("Join", "Households", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <input name="id" value="@Model.Id" hidden/>
+    <div class="form-group">
+        <p>Are you sure you want to join this household?</p>
+        <p><strong>@Model.Name</strong></p>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Yes" class="btn btn-default" />
+        </div>
+    </div>  
+}
+<a href="@Url.Action("Join", "Home")" class="btn btn-accent">Join</a>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

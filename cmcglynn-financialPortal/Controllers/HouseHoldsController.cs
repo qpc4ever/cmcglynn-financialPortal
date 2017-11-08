@@ -26,7 +26,7 @@ namespace cmcglynn_financialPortal.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
 
-            return View(db.HouseHold.FirstOrDefault(h => h.Id == user.HouseHoldId));
+            return View(user.HouseHold);
         }
 
         // GET: HouseHolds/Details/5
@@ -44,11 +44,7 @@ namespace cmcglynn_financialPortal.Controllers
             return View(houseHold);
         }
 
-        // GET: HouseHolds/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
+
         [Authorize]
         public ActionResult InvitationSent()
         {
@@ -66,17 +62,13 @@ namespace cmcglynn_financialPortal.Controllers
             
             if (ModelState.IsValid)
             {
-               
-               
-
                 var user = db.Users.Find(User.Identity.GetUserId());
                 
 
-                user.HouseHoldId = household.Id;
                 db.HouseHold.Add(household);
                 db.SaveChanges();
-
-                
+                user.HouseHoldId = household.Id;
+                db.SaveChanges();
 
                 await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));   //needs to be in leave and join post action
                 return RedirectToAction("Index", "HouseHolds");
@@ -86,21 +78,25 @@ namespace cmcglynn_financialPortal.Controllers
         }
 
         // GET: HouseHolds/Join
-        public ActionResult Join()
+        public ActionResult Join(int id)
         {
-
-            return View();
+            HouseHold household = db.HouseHold.Find(id);
+            if (household == null)
+            {
+                return HttpNotFound();
+            }
+            return View(household);
         }
 
         // Post: HouseHolds/Join
         [HttpPost]
-        public ActionResult Join(int? Id)
+        public async Task<ActionResult> Join(int? id)
         {
-            if (Id == null)
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HouseHold household = db.HouseHold.Find(Id);
+            HouseHold household = db.HouseHold.Find(id);
             if (household == null)
             {
                 return HttpNotFound();
@@ -109,7 +105,7 @@ namespace cmcglynn_financialPortal.Controllers
             user.HouseHoldId = household.Id;
             db.SaveChanges();
 
-
+            await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));   //needs to be in leave and join post action
             return RedirectToAction("Index");
         }
         // GET: HouseHolds/Invite
@@ -124,28 +120,28 @@ namespace cmcglynn_financialPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Invite(EmailModel model)
         {
+            var me = db.Users.Find(User.Identity.GetUserId());
+            model.HouseHoldId = me.HouseHoldId.Value;
             if (ModelState.IsValid)
             {
                 try
                 {
                     var invitee = db.Users.FirstOrDefault(u => u.Email == model.EmailTo);
-                    var me = db.Users.Find(User.Identity.GetUserId());
-                    model.Id = me.HouseHoldId.Value;
-                    if (invitee != null && invitee.HouseHoldId == model.Id)
+                    if (invitee != null && invitee.HouseHoldId == model.HouseHoldId)
                     {
                         return RedirectToAction("UserAlreadyAssignedToHouseHold");
                     }
                     var callbackUrl = "";
                     if (invitee != null)
                     {
-                        callbackUrl = Url.Action("JoinHouseHold", "HouseHolds", new { id = model.Id }, protocol: Request.Url.Scheme);
+                        callbackUrl = Url.Action("Join", "HouseHolds", new { id = model.HouseHoldId }, protocol: Request.Url.Scheme);
                     }
                     else
                     {
-                        callbackUrl = Url.Action("Register", "Account", new { id = model.Id }, protocol: Request.Url.Scheme);
+                        callbackUrl = Url.Action("Register", "Account", new { id = model.HouseHoldId }, protocol: Request.Url.Scheme);
                     }
                     var body = "<p>Email From: <bold>{0}</bold></p><p>Message:</p><p>{1}</p><p>{2}</p>";
-                    var from = "MyPortfolio<"+ me.Email +">";
+                    var from = "Quick Budgeter<"+ me.Email +">";
                     var subject = "Invite to join HouseHold";
                     var to = model.EmailTo;
 
@@ -153,7 +149,7 @@ namespace cmcglynn_financialPortal.Controllers
                     {
                         Subject = subject,
                         Body = string.Format(body, me.FullName, model.Body, "Please click on the link below to confirm invitation: <br /> <a href=\" " + callbackUrl + " \">Link to invitation.</a>"),
-                    IsBodyHtml = true
+                        IsBodyHtml = true
                     };
 
                     var svc = new PersonalEmail();

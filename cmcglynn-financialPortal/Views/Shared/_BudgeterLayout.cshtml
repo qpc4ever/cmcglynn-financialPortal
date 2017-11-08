@@ -101,7 +101,7 @@
                             Accounts<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
                         <ul id="uielements" class="nav nav-second collapse">
-                            <li><a href="@Url.Action("Index", "Home")">My Accounts</a></li>
+                            <li><a href="@Url.Action("Index", "Accounts")">My Accounts</a></li>
                             <li><a href="@Url.Action("Create", "Accounts")">Add Account</a></li>
                             @*<li><a href="~/Assets/activity.html"> Activity</a></li>*@
                         </ul>
@@ -252,12 +252,9 @@
     <script src="~/Assets/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="~/Assets/vendor/toastr/toastr.min.js"></script>
     <script src="~/Assets/vendor/sparkline/index.js"></script>
-    @*<script src="~/Assets/vendor/flot/jquery.flot.min.js"></script>
-        <script src="~/Assets/vendor/flot/jquery.flot.resize.min.js"></script>
-        <script src="~/Assets/vendor/flot/jquery.flot.spline.js"></script>*@
     <!-- App scripts -->
     <script src="~/Assets/scripts/luna.js"></script>
-    <script>
+    @*<script>
             $(document).ready(function () {
 
 
@@ -394,7 +391,7 @@
 
 
             });
-        </script>
+        </script>*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
