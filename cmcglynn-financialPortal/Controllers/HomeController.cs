@@ -100,11 +100,18 @@ namespace cmcglynn_financialPortal.Controllers
 
             await HttpContext.RefreshAuthentication(db.Users.Find(User.Identity.GetUserId()));
         }
+
+        public ActionResult CreateJoinHouseHold()
+        {
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult CreateJoinHouseHold([Bind(Include = "Id,Name")] HouseHold household)
         {
             //Implementation for creating and joining household
-           
-           
+
+
             if (ModelState.IsValid)
 
             {
@@ -121,10 +128,17 @@ namespace cmcglynn_financialPortal.Controllers
             }
 
             return View(household);
-
-           
         }
 
+             [AllowAnonymous]
+        public ActionResult Landing()
+        {
+            return View();
+        }
+
+
     }
-}
+
+    }
+
    

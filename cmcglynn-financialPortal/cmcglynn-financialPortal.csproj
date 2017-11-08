@@ -1468,8 +1468,8 @@
     <Content Include="Views\Home\CreateJoinHouseHold.cshtml" />
     <Content Include="Views\Manage\ChangeUserInfo.cshtml" />
     <Content Include="Views\Shared\_BudgeterLayout.cshtml" />
-    <Content Include="Views\Account\Login2.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Login2.0.cshtml" />
     <Content Include="Views\Account\ForgotPassword - Copy.cshtml" />
     <Content Include="Views\Account\Register2.0.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />

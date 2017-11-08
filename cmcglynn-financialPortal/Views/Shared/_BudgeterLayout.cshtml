@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <img src="~/Assets/" />
-    <link rel="icon" href="~/Assets/images/19815-200 (1).png" type="image/x-icon">
+    <link rel="icon" href="~/Assets/images/QPCPodcast3NoTextCrop.png" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Page title -->
@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <a class="navbar-brand" href="~/Assets/index.html" style="text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;text-decoration: underline; font-family:'Goudy Old Style'; padding-bottom:10px;">
+                    <a class="navbar-brand" href="@Url.Action("Index", "Home")" style="text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;text-decoration: underline; font-family:'Goudy Old Style'; padding-bottom:10px;">
                         QUICK BUDGETER<i ></i>                      
                         <span></span>
                     </a>
@@ -79,10 +79,10 @@
                         @*Main*@
                     </li>
                     <li class="active">
-                        <a href="@Url.Action("Index", "Home")"><i class="pe-7s-monitor">&nbsp;&nbsp;</i>Dashboard</a>
+                        <a href="@Url.Action("Index", "Home")"><i class="pe-7s-monitor text-accent">&nbsp;&nbsp;</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false"><i class="pe-7s-home">&nbsp;&nbsp;</i>
+                        <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false"><i class="pe-7s-home text-accent">&nbsp;&nbsp;</i>
                             Households<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
                         <ul id="monitoring" class="nav nav-second collapse">
@@ -93,7 +93,7 @@
                     </li>
                     <li>
                         <a href="~/Assets/#uielements" data-toggle="collapse" aria-expanded="false">
-                            <i class="pe-7s-piggy">&nbsp;&nbsp;</i>
+                            <i class="pe-7s-piggy text-accent">&nbsp;&nbsp;</i>
                             Accounts<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
                         <ul id="uielements" class="nav nav-second collapse">

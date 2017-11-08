@@ -25,7 +25,8 @@ namespace cmcglynn_financialPortal.Controllers
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            return View(user.HouseHold);
+
+            return View(db.HouseHold.FirstOrDefault(h => h.Id == user.HouseHoldId));
         }
 
         // GET: HouseHolds/Details/5
@@ -85,6 +86,14 @@ namespace cmcglynn_financialPortal.Controllers
         }
 
         // GET: HouseHolds/Join
+        public ActionResult Join()
+        {
+
+            return View();
+        }
+
+        // Post: HouseHolds/Join
+        [HttpPost]
         public ActionResult Join(int? Id)
         {
             if (Id == null)
@@ -96,10 +105,13 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
+            var user = db.Users.Find(User.Identity.GetUserId());
+            user.HouseHoldId = household.Id;
+            db.SaveChanges();
 
-            return View(household);
+
+            return RedirectToAction("Index");
         }
-
         // GET: HouseHolds/Invite
         public ActionResult Invite()
         {

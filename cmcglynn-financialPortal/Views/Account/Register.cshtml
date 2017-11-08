@@ -7,11 +7,11 @@
 
 
         <!-- Main content-->
-        <section class="content">
+        <section>
             <div class="back-link">
-                @*<a href="@Url.Action("Index", "Home")" class="btn btn-accent">Back to Dashboard</a>*@
+                <a href="@Url.Action("Login", "Account")" class="btn btn-accent">Back to Login</a>
             </div>
-            <div class="container-center lg animated slideInDown">
+            <div class="container-center lg animated slideInDown" style="margin: 5% auto 0">
 
                 <div class="view-header">
                     <div class="header-icon">
@@ -48,17 +48,17 @@
                                 <div class="form-group col-lg-6">
                                     <label>Repeat Password</label>
                                     <input type="password" value="" id="repeatpassword" class="form-control" name="">
-                                    <span class="help-block small">Please repeat your pasword</span>
+                                    <span class="help-block small">Please repeat your password</span>
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label>Profile Picture</label>
                                     <input name="image" type="file" class="form-control" />
-                                    <span class="help-block small">Upload Profile Pic</span>
+                                    <span class="help-block small">Upload profile pic</span>
                                 </div>
                                 <div class="form-group col-lg-6">
-                                    <label>Email Address</label>
-                                    <input type="" value="" id="email" class="form-control" name="">
-                                    <span class="help-block small">Your address email to contact</span>
+                                    <label class="control-label" for="username">Email</label>
+                                    <input type="text" placeholder="example@gmail.com" title="Please enter you username" required="" value="" name="Email" id="username" class="form-control">
+                                    <span class="help-block small">@Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })Please enter your email address</span>
                                 </div>
                             </div>
                             <div>
