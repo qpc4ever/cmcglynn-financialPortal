@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<a href="@Url.Action("Invite", "HouseHolds")" class="btn btn-accent">Invite</a>
+<a href="@Url.Action("Edit", "HouseHolds")" class="btn btn-accent">Edit</a>
+<a href="@Url.Action("Leave", "HouseHolds")" class="btn btn-accent">Leave</a>
 
     <div class="row">
         <div class="col-lg-2 col-xs-6">
@@ -216,6 +219,7 @@
     </div>
 
 @section Scripts {
+<script src="~/Assets/vendor/datatables/datatables.min.js"></script>
     <script src="~/Assets/vendor/flot/jquery.flot.min.js"></script>
     <script src="~/Assets/vendor/flot/jquery.flot.resize.min.js"></script>
     <script src="~/Assets/vendor/flot/jquery.flot.spline.js"></script>

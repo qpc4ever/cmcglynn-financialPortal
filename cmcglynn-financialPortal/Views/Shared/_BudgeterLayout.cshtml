@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <img src="~/Assets/" />
 
-    <link rel="icon" href="~/Assets/images/PNGPIX-COM-Dollar-Sign-PNG-Image.png" type="image/x-icon" style="">
+    <link rel="icon" href="~/Assets/images/PNGPIX-COM-Dollar-Sign-PNG-Image.png" type="image/x-icon">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Page title -->
@@ -62,15 +61,8 @@
                                 <span class="label label-warning pull-right">2</span>
                             </a>
                         </li>
-                        <li class="profil-link">
-
-                            <a>
-                                <span class="profile-address"></span>
-                                <img src="@ViewBag.ProfilePic" class="img-circle" alt="">
-                            </a>
-                        </li>
+                        @Html.Partial("_LoginPartial")
                     </ul>
-                    @Html.Partial("_LoginPartial")
                 </div>
             </div>
         </nav>
@@ -86,7 +78,7 @@
                         <a href="@Url.Action("Index", "Home")"><i class="pe-7s-monitor text-accent">&nbsp;&nbsp;</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="~/Assets/#monitoring" data-toggle="collapse" aria-expanded="false">
+                        <a href="#monitoring" data-toggle="collapse" aria-expanded="false">
                             <i class="pe-7s-home text-accent">&nbsp;&nbsp;</i>
                             Households<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
@@ -96,11 +88,12 @@
                             @*<li><a href="~/Assets/activity.html"> Activity</a></li>*@
                         </ul>
                     </li>
+
                     @if (@ViewBag.HouseHold != null)
             {
                        
                     <li>
-                        <a href="~/Assets/#uielements" data-toggle="collapse" aria-expanded="false">
+                        <a href="#uielements" data-toggle="collapse" aria-expanded="false">
                             <i class="pe-7s-piggy text-accent">&nbsp;&nbsp;</i>
                             Accounts<span class="sub-nav-icon"> <i class="stroke-arrow"></i> </span>
                         </a>
@@ -115,6 +108,9 @@
                     {
                         @*<span>NO HOUSEHOLD</span>*@
                     }
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Manage")"><i class="pe-7s-add-user text-accent">&nbsp;&nbsp;</i>Profile</a>
+                    </li>
                     @*<li class="nav-category">
                             UI Elements
                         </li>
@@ -234,10 +230,11 @@
                                         @if (@ViewBag.HouseHold != null)
                                         {
                                             @ViewBag.HouseHold
+                                            <img src="@ViewBag.ProfilePic"/>
                                         }
                                         else
                                         {
-                                            <span>NO HOUSEHOLD</span>
+                                            <span> NO HOUSEHOLD </span>
                                         }
                                     </h3>
                                     <small>

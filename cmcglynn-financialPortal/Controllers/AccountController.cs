@@ -173,10 +173,6 @@ namespace cmcglynn_financialPortal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase image)
         {
-           
-
-            
-
             var pPic = "/Assets/images/QPCPodcast3NoTextCrop.png";
 
             if (image != null && image.ContentLength > 0)
@@ -216,7 +212,8 @@ namespace cmcglynn_financialPortal.Controllers
                         Email = model.Email,
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        HouseHoldId = model.HouseHoldId,
+                        ProfilePic = pPic,
+                        HouseHoldId = model.HouseHoldId
                     };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

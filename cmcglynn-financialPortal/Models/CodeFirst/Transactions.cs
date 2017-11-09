@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -16,8 +17,10 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public decimal Amount { get; set; }
         public bool ReconciledStatus { get; set; }
         public decimal ReconciledAmount { get; set; }
+        [Display(Name = "Transaction Date")]
         public DateTime TransactionDate { get; set; }
         public DateTime? ReconciliationDate { get; set; }
+
         public int TransactionTypeId { get; set; }
         public DateTime PostedDate { get; set; }
         public bool Void { get; set; }

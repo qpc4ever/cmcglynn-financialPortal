@@ -169,6 +169,11 @@ namespace cmcglynn_financialPortal.Controllers
         {
             return View();
         }
+        // Get: UserAlreadyAssignedToHouseHold
+        public ActionResult UserAlreadyAssignedToHouseHold()
+        {
+            return View();
+        }
         // GET: HouseHolds/Edit/5
         public ActionResult Edit(int? id)
         {

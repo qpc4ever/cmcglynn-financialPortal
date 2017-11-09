@@ -257,6 +257,7 @@
     <Content Include="Assets\images\PNGPIX-COM-Dollar-Sign-PNG-Image.png" />
     <Content Include="Assets\images\profile.jpg" />
     <Content Include="Assets\images\QPCPodcast3NoTextCrop.png" />
+    <Content Include="Assets\images\QPCPodcast3NoText_square.png" />
     <Content Include="Assets\images\ssms_connection_errors-100601651-primary.idge.jpg" />
     <Content Include="Assets\index.html" />
     <Content Include="Assets\loaders.html" />
@@ -1490,6 +1491,7 @@
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\HouseHolds\UserAlreadyAssignedToHouseHold.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

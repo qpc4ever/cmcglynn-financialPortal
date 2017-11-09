@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using cmcglynn_financialPortal.Models;
 using cmcglynn_financialPortal.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 
 namespace cmcglynn_financialPortal.Controllers
 {
@@ -56,8 +57,26 @@ namespace cmcglynn_financialPortal.Controllers
         {
             if (ModelState.IsValid)
             {
+                var user = db.Users.Find(User.Identity.GetUserId());
+
+                transactions.AuthorId = user.Id;
+                transactions.TransactionDate = DateTime.Now;
+                transactions.Void = false;
                 db.Transactions.Add(transactions);
+
+                Accounts accounts = db.Accounts.Find(transactions.AccountsId);
+               
+
+                if (transactions.TransactionTypeId == 1)
+                {
+                    accounts.Balance -= transactions.Amount;
+                }
+                else
+                {
+                    accounts.Balance += transactions.Amount;
+                }
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
