@@ -244,13 +244,17 @@
     <Content Include="Assets\formElements.html" />
     <Content Include="Assets\gridSystem.html" />
     <Content Include="Assets\icons.html" />
+    <Content Include="Assets\images\12_budget.jpg" />
     <Content Include="Assets\images\19815-200 %281%29.png" />
+    <Content Include="Assets\images\A-High-Level-Marketing-Budget-Breakdown.jpg" />
     <Content Include="Assets\images\a1.jpg" />
     <Content Include="Assets\images\a2.jpg" />
     <Content Include="Assets\images\a3.jpg" />
     <Content Include="Assets\images\a4.jpg" />
     <Content Include="Assets\images\a5.jpg" />
     <Content Include="Assets\images\asp-mvc.png" />
+    <Content Include="Assets\images\budget-drupal-project-01.png" />
+    <Content Include="Assets\images\budget.jpg" />
     <Content Include="Assets\images\img-2.jpg" />
     <Content Include="Assets\images\main-qimg-73742f9afad887900ea786ae2006ba28.png" />
     <Content Include="Assets\images\net_c.jpg" />
@@ -259,6 +263,7 @@
     <Content Include="Assets\images\QPCPodcast3NoTextCrop.png" />
     <Content Include="Assets\images\QPCPodcast3NoText_square.png" />
     <Content Include="Assets\images\ssms_connection_errors-100601651-primary.idge.jpg" />
+    <Content Include="Assets\images\_b99fc474-e856-11e6-93cc-bb55973994db.jpg" />
     <Content Include="Assets\index.html" />
     <Content Include="Assets\loaders.html" />
     <Content Include="Assets\login.html" />
@@ -1463,7 +1468,7 @@
     <Content Include="Views\HouseHolds\Details.cshtml" />
     <Content Include="Views\HouseHolds\Edit.cshtml" />
     <Content Include="Views\HouseHolds\Index.cshtml" />
-    <Content Include="Views\Manage\View.cshtml" />
+    <Content Include="Views\Manage\Profile.cshtml" />
     <Content Include="Views\Home\CreateJoinHouseHold.cshtml" />
     <Content Include="Views\Manage\ChangeUserInfo.cshtml" />
     <Content Include="Views\Shared\_BudgeterLayout.cshtml" />
@@ -1492,6 +1497,7 @@
     <Content Include="Views\Transactions\Edit.cshtml" />
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\HouseHolds\UserAlreadyAssignedToHouseHold.cshtml" />
+    <Content Include="Views\Transactions\Create - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

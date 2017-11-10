@@ -218,7 +218,8 @@
                             <div class="view-header">
                                 <div class="pull-right text-right" style="line-height: 14px">
                                     <div>
-                                        <a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>
+                                        <button type="button" class="btn btn-accent" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "Transactions")">NEW TRANSACTION</button>
+                                        @*<a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>*@
                                     </div>
                                     <small>@*Luna Admin Theme*@<br>@*Dashboard*@<br> <span class="c-white"></span></small>
                                 </div>
@@ -230,7 +231,7 @@
                                         @if (@ViewBag.HouseHold != null)
                                         {
                                             @ViewBag.HouseHold
-                                            <img src="@ViewBag.ProfilePic"/>
+                                            
                                         }
                                         else
                                         {

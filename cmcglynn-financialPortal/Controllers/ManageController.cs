@@ -391,6 +391,11 @@ namespace cmcglynn_financialPortal.Controllers
 
             return View(model);
         }
+        // GET: /Manage/Profile
+        public ActionResult Profile()
+        {
+            return View();
+        }
 
         protected override void Dispose(bool disposing)
         {

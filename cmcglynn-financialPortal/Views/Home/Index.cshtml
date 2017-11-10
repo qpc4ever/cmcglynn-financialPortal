@@ -1,9 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-<a href="@Url.Action("Invite", "HouseHolds")" class="btn btn-accent">Invite</a>
-<a href="@Url.Action("Edit", "HouseHolds")" class="btn btn-accent">Edit</a>
-<a href="@Url.Action("Leave", "HouseHolds")" class="btn btn-accent">Leave</a>
+
 
     <div class="row">
         <div class="col-lg-2 col-xs-6">
@@ -355,7 +353,7 @@
                         "showEasing": "swing",
                         "timeOut": "6000"
                     };
-                    toastr.warning('<strong>You entered to LUNA</strong> <br/><small>Premium admin theme with Dark UI style. </small>');
+                    toastr.success('<strong>Welcome to QUICK BUDGETER!</strong> <br/><small>An easy to use budgeting application. </small>');
                 }, 1600)
 
 
