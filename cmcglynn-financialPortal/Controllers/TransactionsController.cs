@@ -78,6 +78,14 @@ namespace cmcglynn_financialPortal.Controllers
                 }
                 db.SaveChanges();
 
+                if (accounts.Balance < 0)
+                {
+                    IdentityMessage messageforUser = new IdentityMessage();
+
+                    var callbackUrl = Url.Action("Index", "Transactions", new { id = transactions.Id }, protocol: Request.Url.Scheme);
+                    messageforUser.Subject = "Account Overdraft";
+                }
+
                 return RedirectToAction("Index");
             }
 

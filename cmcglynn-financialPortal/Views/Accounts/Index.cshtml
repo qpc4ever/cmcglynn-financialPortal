@@ -13,16 +13,17 @@
 <table Id="MyTable" class="table table-striped table-hover">
     <thead>
         <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.AccountType.Name)
+            <th>
+                    Account 
+                    @*@Html.DisplayNameFor(model => model.AccountType.Name)*@
                 </th>
-                <th>
+                @*<th>
                     @Html.DisplayNameFor(model => model.HouseHold.Name)
                 </th>*@
-            <th style="margin-left:8px;">
+            @*<th style="margin-left:8px;">
                 Account
-                @*@Html.DisplayNameFor(model => model.Name)*@
-            </th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>*@
             @*<th>
                     @Html.DisplayNameFor(model => model.Type)
                 </th>*@
@@ -55,15 +56,15 @@
         @foreach (var item in Model)
         {
             <tr>
-                @*<td>
+                <td>
                         @Html.DisplayFor(modelItem => item.AccountType.Name)
                     </td>
-                    <td>
+                    @*<td>
                         @Html.DisplayFor(modelItem => item.HouseHold.Name)
                     </td>*@
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Name)
-                </td>
+                </td>*@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.Type)
                     </td>*@

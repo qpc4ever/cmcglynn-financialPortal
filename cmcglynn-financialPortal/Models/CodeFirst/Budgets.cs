@@ -14,7 +14,10 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public string Description { get; set; }
         public int HouseHoldId { get; set; }
         public string Item { get; set; }
+        public int BudgetTypeId { get; set; }
+        public decimal Amount { get; set; }
 
+        public virtual BudgetType BudgetType { get; set; }
         public virtual Frequency Frequency { get; set; }
         public virtual HouseHold HouseHold { get; set; }
         public virtual Category Category { get; set; }

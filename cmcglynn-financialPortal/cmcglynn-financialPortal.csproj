@@ -208,6 +208,7 @@
     <Compile Include="Models\CodeFirst\Accounts.cs" />
     <Compile Include="Models\CodeFirst\AccountType.cs" />
     <Compile Include="Models\CodeFirst\Budgets.cs" />
+    <Compile Include="Models\CodeFirst\BudgetType.cs" />
     <Compile Include="Models\CodeFirst\Category.cs" />
     <Compile Include="Models\CodeFirst\Expenses.cs" />
     <Compile Include="Models\CodeFirst\Frequency.cs" />
@@ -1487,11 +1488,6 @@
     <Content Include="Views\Home\Landing.cshtml" />
     <Content Include="Views\HouseHolds\Join.cshtml" />
     <Content Include="Views\HouseHolds\InviteSent.cshtml" />
-    <Content Include="Views\Budgets\Create.cshtml" />
-    <Content Include="Views\Budgets\Delete.cshtml" />
-    <Content Include="Views\Budgets\Details.cshtml" />
-    <Content Include="Views\Budgets\Edit.cshtml" />
-    <Content Include="Views\Budgets\Index.cshtml" />
     <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Views\Transactions\Details.cshtml" />
@@ -1499,6 +1495,11 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\HouseHolds\UserAlreadyAssignedToHouseHold.cshtml" />
     <Content Include="Views\Transactions\Create - Copy.cshtml" />
+    <Content Include="Views\Budgets\Create.cshtml" />
+    <Content Include="Views\Budgets\Delete.cshtml" />
+    <Content Include="Views\Budgets\Details.cshtml" />
+    <Content Include="Views\Budgets\Edit.cshtml" />
+    <Content Include="Views\Budgets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using cmcglynn_financialPortal.Models.CodeFirst;
+using System.Collections.Generic;
 
 namespace cmcglynn_financialPortal.Models
 {
@@ -18,6 +19,7 @@ namespace cmcglynn_financialPortal.Models
         public int? HouseHoldId { get; set; }
         public virtual HouseHold HouseHold { get; set; }
 
+
         public string FullName
         {
             get
@@ -25,6 +27,15 @@ namespace cmcglynn_financialPortal.Models
                 return FirstName + " " + LastName;
             }
         }
+        public ApplicationUser()
+        {
+            Transactions = new HashSet<Transactions>();
+            Notifications = new HashSet<Notifications>();
+        }
+
+     
+        public virtual ICollection<Transactions> Transactions { get; set; }
+        public virtual ICollection<Notifications> Notifications { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -59,6 +70,7 @@ namespace cmcglynn_financialPortal.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<AccountType> AccountType { get; set; }
         public DbSet<TransactionType> TransactionType { get; set; }
+        public DbSet<BudgetType> BudgetType { get; set; }
 
     }
 }
