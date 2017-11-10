@@ -11,6 +11,7 @@ using cmcglynn_financialPortal.Models.CodeFirst;
 
 namespace cmcglynn_financialPortal.Controllers
 {
+    [AuthorizeHouseHoldRequired]
     public class BudgetsController : Universal
     {
         //private ApplicationDbContext db = new ApplicationDbContext();

@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace cmcglynn_financialPortal.Controllers
 {
+    [AuthorizeHouseHoldRequired]
     public class TransactionsController : Universal
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -71,7 +72,7 @@ namespace cmcglynn_financialPortal.Controllers
                 {
                     accounts.Balance -= transactions.Amount;
                 }
-                else
+                else if (transactions.TransactionTypeId == 2)
                 {
                     accounts.Balance += transactions.Amount;
                 }

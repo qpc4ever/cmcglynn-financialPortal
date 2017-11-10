@@ -10,11 +10,10 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public int? HouseHoldId { get; set; }
+        public int HouseHoldId { get; set; }
         public decimal Balance { get; set; }
         public DateTime? Reconcialed { get; set; }
-        public string TransactionsId { get; set; }
-        public int? AccountTypeId { get; set; }
+        public int AccountTypeId { get; set; }
         public DateTime Open { get; set; }
         public string Description { get; set; }
         public string Email { get; set; }

@@ -77,6 +77,9 @@
                     <li class="active">
                         <a href="@Url.Action("Index", "Home")"><i class="pe-7s-monitor text-accent">&nbsp;&nbsp;</i>Dashboard</a>
                     </li>
+
+                    @if (ViewBag.HouseHold != null)
+                    {
                     <li>
                         <a href="#monitoring" data-toggle="collapse" aria-expanded="false">
                             <i class="pe-7s-home text-accent">&nbsp;&nbsp;</i>
@@ -88,10 +91,7 @@
                             @*<li><a href="~/Assets/activity.html"> Activity</a></li>*@
                         </ul>
                     </li>
-
-                    @if (@ViewBag.HouseHold != null)
-            {
-                       
+                        //foreach (var Accounts in model)
                     <li>
                         <a href="#uielements" data-toggle="collapse" aria-expanded="false">
                             <i class="pe-7s-piggy text-accent">&nbsp;&nbsp;</i>
@@ -210,6 +210,13 @@
         </aside>
         <!-- End navigation-->
         <!-- Main content-->
+        <div class="modal fade" id="myTransactionModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
         <div style="margin-left: 300px; margin-top: 100px; margin-right: 300px">
             <section>
                 <div class="container-fluid" style="padding: 0px">
@@ -218,7 +225,8 @@
                             <div class="view-header">
                                 <div class="pull-right text-right" style="line-height: 14px">
                                     <div>
-                                        <button type="button" class="btn btn-accent" data-toggle="modal" data-target="#myModal" href="@Url.Action("Create", "Transactions")">NEW TRANSACTION</button>
+                                        <a type="button" class="btn btn-accent" href="@Url.Action("Create", "Transactions")" data-target="#myTransactionModal" data-toggle="modal">NEW TRANSACTION</a>
+                                        
                                         @*<a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>*@
                                     </div>
                                     <small>@*Luna Admin Theme*@<br>@*Dashboard*@<br> <span class="c-white"></span></small>

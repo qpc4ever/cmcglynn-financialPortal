@@ -33,11 +33,11 @@ namespace cmcglynn_financialPortal.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public PartialViewResult _Contact(string someTxt)                            //partialView
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = someTxt;
 
-            return View();
+            return PartialView();
         }
         
 

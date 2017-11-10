@@ -8,13 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using cmcglynn_financialPortal.Models;
 using cmcglynn_financialPortal.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 
 namespace cmcglynn_financialPortal.Controllers
 {
-    public class AccountsController : Controller
+    [AuthorizeHouseHoldRequired]
+    public class AccountsController : Universal
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: Accounts
         public ActionResult Index()
         {
@@ -41,7 +41,6 @@ namespace cmcglynn_financialPortal.Controllers
         public ActionResult Create()
         {
             ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name");
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name");
             return View();
         }
 
@@ -54,7 +53,9 @@ namespace cmcglynn_financialPortal.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+                var user = db.Users.Find(User.Identity.GetUserId());
+
+                accounts.HouseHoldId = user.HouseHoldId.Value;
                 accounts.Open = DateTime.Now;
                 db.Accounts.Add(accounts);
                 db.SaveChanges();
@@ -62,7 +63,6 @@ namespace cmcglynn_financialPortal.Controllers
             }
 
             ViewBag.AccountTypeId = new SelectList(db.AccountType, "Id", "Name", accounts.AccountTypeId);
-            ViewBag.HouseHoldId = new SelectList(db.HouseHold, "Id", "Name", accounts.HouseHoldId);
             return View(accounts);
         }
 

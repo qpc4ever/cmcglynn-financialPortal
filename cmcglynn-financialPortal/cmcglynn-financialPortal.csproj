@@ -253,6 +253,7 @@
     <Content Include="Assets\images\a4.jpg" />
     <Content Include="Assets\images\a5.jpg" />
     <Content Include="Assets\images\asp-mvc.png" />
+    <Content Include="Assets\images\budget %281%29.jpg" />
     <Content Include="Assets\images\budget-drupal-project-01.png" />
     <Content Include="Assets\images\budget.jpg" />
     <Content Include="Assets\images\img-2.jpg" />
@@ -1441,7 +1442,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\_Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

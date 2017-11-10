@@ -15,10 +15,12 @@
     <link rel="icon" href="~/Assets/images/PNGPIX-COM-Dollar-Sign-PNG-Image.png" type="image/x-icon">
     @Styles.Render("~/Content/css")
 </head>
-<body background="~/Assets/images/A-High-Level-Marketing-Budget-Breakdown.jpg" style="padding-top: 0px; background-color:rgb(31, 35, 43); @*overflow: hidden*@">
+
+<body background="~/Assets/images/budget (1).jpg" style="padding-top: 0px; background-color:rgb(31, 35, 43); @*overflow: hidden*@">
     <link href="~/Assets/vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="~/Assets/vendor/animate.css/animate.css" rel="stylesheet" />
     <link rel="icon" href="~/Assets/images/PNGPIX-COM-Dollar-Sign-PNG-Image.png" type="image/x-icon" style="">
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <div class="row" align="center">
         <div class="col-sm-2 col-md-12">
             <a href="@Url.Action("Index", "Home")">
@@ -34,12 +36,10 @@
         </div>
 
     </div>
-    <div>
-        <<a href="@Url.Action("Login", "Account")" class="btn btn-accent btn-lg btn-block">Login</a>
-    </div>
-    <div>
-        <<a href="@Url.Action("Register", "Account")" class="btn btn-accent btn-lg btn-block">Register</a>
-    </div>
+    <center>
+        <a href="@Url.Action("Login", "Account")" class="btn btn-default btn-lg">Login</a>
+        <a href="@Url.Action("Register", "Account")" class="btn btn-default btn-lg">Register</a>
+    </center>
     <div>
         <p style="text-align:center; font-family:'Goudy Old Style'; color:white; font-size:55px; text-decoration: underline; text-shadow:-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; margin-top: 80px;">Created With:</p>
     </div>
@@ -78,5 +78,9 @@
     </footer>
 </body>
 </html>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 

@@ -209,23 +209,19 @@ namespace cmcglynn_financialPortal.Controllers
         {
             var currentHouseHoldId = User.Identity.GetHouseHoldId();
             var currentHouseHold = db.HouseHold.Find(currentHouseHoldId);
-            return View();
+            return View(currentHouseHold);
         }
-        // POST: HouseHolds/Leave
 
+        // POST: HouseHolds/Leave
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Leave([Bind(Include = "Id,Name,Created,Updated")] HouseHold houseHold)
+        public async Task<ActionResult> Leave(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var user = db.Users.Find(User.Identity.GetUserId());
-                user.HouseHoldId = null;
-                db.SaveChanges();
-                await HttpContext.RefreshAuthentication(user);   //needs to be in leave and join post action
-                return RedirectToAction("Index", "Home");
-            }
-            return View(houseHold);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            user.HouseHoldId = null;
+            db.SaveChanges();
+            await HttpContext.RefreshAuthentication(user);   //needs to be in leave and join post action
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: HouseHolds/Delete/5

@@ -2,7 +2,17 @@
     ViewBag.Title = "Home Page";
 }
 
+@*<div class="row">
+    <div class="col-md-4">
+        <a href="" data-id="RyanTheMasterCoder">RyanTheMasterCoder</a>
+    </div>
+</div>*@
 
+<div class="col-md-4">
+    <div id="renderHere">
+
+    </div>
+</div>
     <div class="row">
         <div class="col-lg-2 col-xs-6">
             <div class="panel panel-filled">
@@ -221,6 +231,11 @@
     <script src="~/Assets/vendor/flot/jquery.flot.min.js"></script>
     <script src="~/Assets/vendor/flot/jquery.flot.resize.min.js"></script>
     <script src="~/Assets/vendor/flot/jquery.flot.spline.js"></script>
+    @*<script>
+        $('.clickHere').click(function(){                                  //partialView
+            $('renderHere').load('Home/_Contact/' + $(this).data('id'))
+        })
+    </script>*@
     <script>
             $(document).ready(function () {
 
