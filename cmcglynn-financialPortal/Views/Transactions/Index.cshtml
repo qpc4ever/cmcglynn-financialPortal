@@ -55,7 +55,7 @@
             @*<th>
                 @Html.DisplayNameFor(model => model.Void)
             </th>*@
-            <th></th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>
@@ -101,10 +101,10 @@
                     @*<td>
                         @Html.DisplayFor(modelItem => item.Void)
                     </td>*@
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    <td style="display:inline-flex">
+                        <a href="@Url.Action("Edit", "Transactions", new { id = item.Id })"><i class="fa fa-pencil-square" style="font-size:18px"></i></a> | 
+                        <a href="@Url.Action("Details", "Transactions", new { id = item.Id })"><i class="fa fa-ban" style="font-size:18px"></i></a> |
+                        <a href="@Url.Action("Delete", "Transactions", new { id = item.Id })"><i class="fa fa-trash" style="font-size:18px"></i></a>
                     </td>
                 </tr>
             }

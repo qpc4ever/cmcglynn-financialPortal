@@ -245,6 +245,7 @@
     <Content Include="Assets\formElements.html" />
     <Content Include="Assets\gridSystem.html" />
     <Content Include="Assets\icons.html" />
+    <Content Include="Assets\images\101913928-94989168.530x298.jpg" />
     <Content Include="Assets\images\12_budget.jpg" />
     <Content Include="Assets\images\19815-200 %281%29.png" />
     <Content Include="Assets\images\A-High-Level-Marketing-Budget-Breakdown.jpg" />
@@ -264,6 +265,7 @@
     <Content Include="Assets\images\profile.jpg" />
     <Content Include="Assets\images\QPCPodcast3NoTextCrop.png" />
     <Content Include="Assets\images\QPCPodcast3NoText_square.png" />
+    <Content Include="Assets\images\save-when-money-is-tight-56a634fb3df78cf7728bd633.jpg" />
     <Content Include="Assets\images\ssms_connection_errors-100601651-primary.idge.jpg" />
     <Content Include="Assets\images\_b99fc474-e856-11e6-93cc-bb55973994db.jpg" />
     <Content Include="Assets\index.html" />
@@ -1443,7 +1445,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\_Contact.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />

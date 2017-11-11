@@ -19,9 +19,11 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public decimal ReconciledAmount { get; set; }
         [Display(Name = "Transaction Date")]
         public DateTime TransactionDate { get; set; }
+        [Display(Name = "Reconciled")]
         public DateTime? ReconciliationDate { get; set; }
 
         public int TransactionTypeId { get; set; }
+        [Display(Name = "Posted Date")]
         public DateTime PostedDate { get; set; }
         public bool Void { get; set; }
 
