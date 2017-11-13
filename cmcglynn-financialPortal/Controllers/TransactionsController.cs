@@ -20,7 +20,9 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Transactions
         public ActionResult Index()
         {
-            var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category).Include(t => t.TransactionType);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var transactions = user.HouseHold.Accounts.SelectMany(t => t.Transactions).ToList();
+            //var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category).Include(t => t.TransactionType);
             return View(transactions.ToList());
         }
 
@@ -54,42 +56,76 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,AuthorId,CategoryId,AccountsId,Amount,ReconciledStatus,ReconciledAmount,TransactionDate,ReconciliationDate,TransactionTypeId,PostedDate,Void")] Transactions transactions)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,CategoryId,AccountsId,AccountTypeId,TransactionTypeId,Amount,TransactionDate")] Transactions transactions)
         {
+
             if (ModelState.IsValid)
             {
                 var user = db.Users.Find(User.Identity.GetUserId());
-
+                var household = user.HouseHold;
+                var updated = false;
                 transactions.AuthorId = user.Id;
                 transactions.TransactionDate = DateTime.Now;
                 transactions.Void = false;
-                db.Transactions.Add(transactions);
 
                 Accounts accounts = db.Accounts.Find(transactions.AccountsId);
-               
+
 
                 if (transactions.TransactionTypeId == 1)
                 {
-                    accounts.Balance -= transactions.Amount;
+                    transactions.Amount *= -1; 
+                    accounts.Balance += transactions.Amount;
+                    updated = true;
                 }
                 else if (transactions.TransactionTypeId == 2)
                 {
                     accounts.Balance += transactions.Amount;
+                    updated = true;
                 }
+                db.Transactions.Add(transactions);
                 db.SaveChanges();
-
-                if (accounts.Balance < 0)
+                if (updated == true && accounts.HouseHold != null)
                 {
-                    IdentityMessage messageforUser = new IdentityMessage();
+                    if (accounts.Balance == 0)
+                    {
+                        foreach (var u in household.Users)
+                        {
+                            Notifications n = new Notifications();
+                            n.NotifyUserId = accounts.HouseHoldId.ToString();
+                            n.Created = DateTime.Now;
+                            n.AccountId = accounts.Id;
+                            n.Type = "Zero Dollars";
+                            n.Description = "Your account: " + accounts.Name + " has reached an amount of zero.";
+                            db.Notifications.Add(n);
+                            db.SaveChanges();
+                        }
+                    }
 
-                    var callbackUrl = Url.Action("Index", "Transactions", new { id = transactions.Id }, protocol: Request.Url.Scheme);
-                    messageforUser.Subject = "Account Overdraft";
+
+                    else if (accounts.Balance < 0)
+                    {
+                        foreach (var u in household.Users)
+                        {
+                            Notifications n = new Notifications();
+                            n.NotifyUserId = u.Id;
+                            n.Created = DateTime.Now;
+                            n.AccountId = accounts.Id;
+                            n.Type = "Over Draft";
+                            n.Description = "Your account: " + accounts.Name + " has reached a negative amount.";
+                            db.Notifications.Add(n);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    accounts.Updated = DateTime.Now;
+                    db.SaveChanges();
+
                 }
-
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            ViewBag.AccountId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+           
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);

@@ -1,12 +1,49 @@
-﻿@model IEnumerable<cmcglynn_financialPortal.Models.CodeFirst.HouseHold>
+﻿@model cmcglynn_financialPortal.Models.CodeFirst.HouseHold
 
 @{
-    ViewBag.Title = "Index";
+//ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
+@if (Model.Accounts.Count() == 0)
+{
+    <h2>Before viewing information associated with your household, you must create an account <a href="@Url.Action("Create", "Accounts")">here.</a></h2>
+}
+else
+{
+    if (Model.Accounts.SelectMany(a => a.Transactions).Count() == 0)
+    {
+        <h2>One last step: click the "new transaction" button to add a transaction.</h2>
+    }
+    else
+    {
+        <h2 class="m-b-xs">
+            @if (@ViewBag.HouseHold != null)
+            {
+                @ViewBag.HouseHold
+            }
+            else
+            {
+                <span>NO HOUSEHOLD</span>
+            }
+        </h2>
+            <a href="@Url.Action("Invite", "HouseHolds")" class="btn btn-accent">Invite</a>
+            <a href="@Url.Action("Edit", "HouseHolds")" class="btn btn-accent">Edit</a>
+            <a href="@Url.Action("Leave", "HouseHolds")" class="btn btn-accent">Leave</a>
+        <img style="height:100px; width:100px" src="@ViewBag.ProfilePic" />
+
+
+
+
+
+
+
+
+
+
+    }
+}
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
@@ -34,4 +71,4 @@
     </tr>
 }
 
-</table>
+</table>*@

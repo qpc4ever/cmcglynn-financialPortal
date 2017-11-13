@@ -19,6 +19,7 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Budgets
         public ActionResult Index()
         {
+            //var transactions = db.Transactions.Where(t => t.transctionsDate >= )
             var budgets = db.Budgets.Include(b => b.Author).Include(b => b.BudgetType).Include(b => b.Category).Include(b => b.Frequency).Include(b => b.HouseHold);
             return View(budgets.ToList());
         }

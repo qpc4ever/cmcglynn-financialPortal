@@ -3,26 +3,28 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+@*<h2>@ViewBag.Title</h2>*@
 
 <p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h2 style="text-align:center">Change your account settings</h2>
     <hr />
     <dl class="dl-horizontal">
         <dt>Password:</dt>
         <dd>
-            [
+          
             @if (Model.HasPassword)
             {
-                @Html.ActionLink("Change your password", "ChangePassword")<br/>
-                @Html.ActionLink("Update Account Information", "ChangeUserInfo")
+                <a href="@Url.Action("ChangePassword", "Manage")" class="btn btn-accent">Change your password</a>
+                <a href="@Url.Action("ChangeUserInfo", "Manage")" class="btn btn-accent">Change account information</a>
+                @*@Html.ActionLink("Change your password", "ChangePassword")<br/>
+                @Html.ActionLink("Update Account Information", "ChangeUserInfo")*@
             }
             else
             {
                 @Html.ActionLink("Create", "SetPassword")
             }
-            ]
+            
         </dd>
         <dt>External Logins:</dt>
         <dd>

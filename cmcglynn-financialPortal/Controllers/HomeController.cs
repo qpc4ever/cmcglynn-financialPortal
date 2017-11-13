@@ -33,12 +33,12 @@ namespace cmcglynn_financialPortal.Controllers
             return View();
         }
 
-        public PartialViewResult _Contact(string someTxt)                            //partialView
-        {
-            ViewBag.Message = someTxt;
+        //public PartialViewResult _Contact(string someTxt)                            //partialView
+        //{
+        //    ViewBag.Message = someTxt;
 
-            return PartialView();
-        }
+        //    return PartialView();
+        //}
         
 
         public ActionResult CustomErrors()
@@ -90,6 +90,7 @@ namespace cmcglynn_financialPortal.Controllers
         {
             return View();
         }
+
 
 
     }

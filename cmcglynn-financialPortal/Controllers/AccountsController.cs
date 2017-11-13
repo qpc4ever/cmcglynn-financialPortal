@@ -18,7 +18,9 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Accounts
         public ActionResult Index()
         {
-            var accounts = db.Accounts.Include(a => a.AccountType).Include(a => a.HouseHold);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var accounts = user.HouseHold.Accounts.ToList();
+            //var accounts = db.Accounts.Include(a => a.AccountType).Include(a => a.HouseHold);
             return View(accounts.ToList());
         }
 
@@ -56,6 +58,7 @@ namespace cmcglynn_financialPortal.Controllers
                 var user = db.Users.Find(User.Identity.GetUserId());
 
                 accounts.HouseHoldId = user.HouseHoldId.Value;
+                
                 accounts.Open = DateTime.Now;
                 db.Accounts.Add(accounts);
                 db.SaveChanges();

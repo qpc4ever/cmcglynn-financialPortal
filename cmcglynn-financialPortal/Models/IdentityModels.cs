@@ -17,7 +17,6 @@ namespace cmcglynn_financialPortal.Models
         public string ProfilePic { get; set; }                            // ADD ALL "NAME" LINES OF CODE FIRST EVERY PROJECT
         public string TimeZone { get; set; }
         public int? HouseHoldId { get; set; }
-        public virtual HouseHold HouseHold { get; set; }
 
 
         public string FullName
@@ -33,7 +32,8 @@ namespace cmcglynn_financialPortal.Models
             Notifications = new HashSet<Notifications>();
         }
 
-     
+      
+        public virtual HouseHold HouseHold { get; set; }
         public virtual ICollection<Transactions> Transactions { get; set; }
         public virtual ICollection<Notifications> Notifications { get; set; }
 

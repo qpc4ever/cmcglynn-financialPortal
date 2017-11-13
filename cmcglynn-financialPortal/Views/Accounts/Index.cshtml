@@ -57,14 +57,14 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                @*<td>
                         @Html.DisplayFor(modelItem => item.AccountType.Name)
-                    </td>
+                    </td>*@
                     @*<td>
                         @Html.DisplayFor(modelItem => item.HouseHold.Name)
                     </td>*@
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>*@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.Type)
                     </td>*@
@@ -91,7 +91,7 @@
                     </td>*@
                 <td style="display:inline-flex">
                     <a href="@Url.Action("Edit", "Accounts", new { id = item.Id })"><i class="fa fa-pencil-square" style="font-size:18px"></i></a> | 
-                    <a href="@Url.Action("Details", "Accounts", new { id = item.Id })"><i class="fa fa-file-text" style="font-size:18px"></i></a> |
+                    <a href="@Url.Action("Details", "Accounts", new { id = item.Id })"><i class="fa fa-file-text" style="font-size:16px"></i></a> |
                     <a href="@Url.Action("Delete", "Accounts", new { id = item.Id })"><i class="fa fa-trash" style="font-size:18px"></i></a>
                 </td>
             </tr>
