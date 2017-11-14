@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using cmcglynn_financialPortal.Models.CodeFirst;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,23 @@ namespace cmcglynn_financialPortal.Models
                 if (user.HouseHoldId != null)
                 {
                     ViewBag.HouseHold = user.HouseHold.Name;
+                }
+                if (user.HouseHoldId == null)
+                {
+                    ViewBag.OverDraft = "False";
+                }
+                else
+                {
+                    List<Accounts> currentUserAccountsOverDraft = new List<Accounts>();
+                    currentUserAccountsOverDraft = user.HouseHold.Accounts.Where(a => a.Balance < 0).ToList();
+                    if (currentUserAccountsOverDraft.Count() == 0)
+                    {
+                        ViewBag.OverDraft = "False";
+                    }
+                    else
+                    {
+                        ViewBag.OverDraft = "True";
+                    }
                 }
             }
 

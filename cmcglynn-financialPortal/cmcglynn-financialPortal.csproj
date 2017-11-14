@@ -1503,6 +1503,8 @@
     <Content Include="Views\Budgets\Edit.cshtml" />
     <Content Include="Views\Budgets\Index.cshtml" />
     <Content Include="Views\Home\CustomErrors.cshtml" />
+    <Content Include="Views\Transactions\Void.cshtml" />
+    <Content Include="Views\Transactions\UnVoid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -69,7 +69,7 @@ namespace cmcglynn_financialPortal.Controllers
 
                 if (transactions.TransactionTypeId == 1)
                 {
-                    transactions.Amount *= -1; 
+                    transactions.Amount *= -1;
                     accounts.Balance += transactions.Amount;
                     updated = true;
                 }
@@ -120,7 +120,7 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AccountId = new SelectList(user.HouseHold.Accounts, "Id", "Name", transactions.AccountsId);           
+            ViewBag.AccountId = new SelectList(user.HouseHold.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
             return View(transactions);
@@ -180,6 +180,99 @@ namespace cmcglynn_financialPortal.Controllers
                 return HttpNotFound();
             }
             return View(transactions);
+        }
+
+        // GET: Transactions/Void/5
+        public ActionResult Void(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Transactions transactions = db.Transactions.Find(id);
+            if (transactions == null)
+            {
+                return HttpNotFound();
+            }
+            if (transactions.Void == true)
+            {
+                return RedirectToAction("UnVoid");
+            }
+            return View(transactions);
+        }
+
+        // GET: Transactions/UnVoid/5
+        public ActionResult UnVoid(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Transactions transactions = db.Transactions.Find(id);
+            if (transactions == null)
+            {
+                return HttpNotFound();
+            }
+            
+            return View(transactions);
+        }
+
+        // POST: Transactions/Void/5
+        [HttpPost, ActionName("Void")]
+        [ValidateAntiForgeryToken]
+        public ActionResult VoidConfirmed(int id)
+        {
+            Transactions transactions = db.Transactions.Find(id);
+            Accounts accounts = db.Accounts.Find(transactions.AccountsId);
+            if (transactions.TransactionTypeId == 1)
+            {
+                accounts.Balance += transactions.Amount;
+            }
+            else
+            {
+                accounts.Balance -= transactions.Amount;
+            }
+            if (accounts.Balance < 0)
+            {
+                ViewBag.Overdraft = "True";
+            }
+            else
+            {
+                ViewBag.Overdraft = "False";
+            }
+            transactions.Void = true;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        // POST: Transactions/UnVoid/5
+        [HttpPost, ActionName("UnVoid")]
+        [ValidateAntiForgeryToken]
+        public ActionResult UnVoidConfirmed(int id)
+        {
+            Transactions transactions = db.Transactions.Find(id);
+            Accounts accounts = db.Accounts.Find(transactions.AccountsId);
+            if (transactions.TransactionTypeId == 1)
+            {
+                accounts.Balance -= transactions.Amount;
+            }
+            else
+            {
+                accounts.Balance += transactions.Amount;
+            }
+            if (accounts.Balance < 0)
+            {
+                ViewBag.Overdraft = "True";
+            }
+            else
+            {
+                ViewBag.Overdraft = "False";
+            }
+            transactions.Void = true;
+
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // POST: Transactions/Delete/5
