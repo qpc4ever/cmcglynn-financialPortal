@@ -35,49 +35,107 @@
         <th>
             @Html.DisplayNameFor(model => model.Amount)
         </th>
-        <th>Budget Amount</th>
-        <th></th>
+        <th>Spent</th>
+        <th>Percentage</th>
+        <th>Action</th>
 
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Author.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BudgetType.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Frequency.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HouseHold.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Item)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>@if (item.BudgetAmount != null)
-        {
+    if (item.BudgetPercentage != null && item.BudgetPercentage >= 80)
+    {
+        <tr style="color: red">
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BudgetType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Frequency.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseHold.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @if (item.SpentAmount != null)
+                {
 
-            @item.BudgetAmount
-        }
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+                    @item.SpentAmount
+                }
+            </td>
+            <td>
+                @if (item.BudgetPercentage != null)
+                {
+                    @item.BudgetPercentage <span> %</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id })<br />
+                @Html.ActionLink("Details", "Details", new { id=item.Id })<br />
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BudgetType.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Frequency.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HouseHold.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Item)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @if (item.SpentAmount != null)
+                {
+
+                    @item.SpentAmount
+                }
+            </td>
+            <td>
+                @if (item.BudgetPercentage != null)
+                {
+                    @item.BudgetPercentage <span> %</span>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })<br />
+                @Html.ActionLink("Details", "Details", new { id = item.Id })<br />
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
 }
 
 </table>

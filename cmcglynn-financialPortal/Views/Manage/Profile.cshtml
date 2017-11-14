@@ -10,14 +10,25 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="media">
-                                            <i class="pe pe-7s-user c-accent fa-3x"></i>
                                             <h2 class="m-t-xs m-b-none">
-                                                Luna user
+                                            @ViewBag.ProfilePic
                                             </h2>
-                                            <small>
-                                                There are many variations of passages of Lorem Ipsum available, but the majority
-                                                have suffered alteration in some form Ipsum available.
-                                            </small>
+                                            <h2 class="m-t-xs m-b-none">
+                                                @ViewBag.FullName
+                                            </h2>
+                                            <h3 class="m-b-xs">
+                                                @if (@ViewBag.HouseHold != null)
+                                                {
+                                                    @ViewBag.HouseHold
+
+                                                }
+                                                else
+                                                {
+                                                    <span> NO HOUSEHOLD </span>
+                                                }
+                                            </h3>
+                                            <a href="@Url.Action("ChangePassword", "Manage")" class="btn btn-accent">Change your password</a>
+                                            <a href="@Url.Action("ChangeUserInfo", "Manage")" class="btn btn-accent">Change account information</a>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
@@ -83,12 +94,9 @@
                                         </div>
                                         <div class="vertical-timeline-content">
                                             <div class="p-sm">
-                                                <span class="vertical-date pull-right"> <small>1 day ago</small> </span>
-                                                <h2>Update profile</h2>
-                                                <p>Change profile name and set new profile description</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                @*@foreach (var transactions in Model.Transactions)
+                                                {*@
+
                                     <div class="vertical-timeline-block">
                                         <div class="vertical-timeline-icon">
                                             <i class="fa fa-file"></i>
@@ -98,6 +106,13 @@
                                                 <span class="vertical-date pull-right"> <small>2 days ago</small> </span>
                                                 <h2>Add new documents to X project</h2>
                                                 <p>Project_document.docx, Contract_20_11_2016.docx, 10_08_2016.docx</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                }
+                                                <span class="vertical-date pull-right"> <small>1 day ago</small> </span>
+                                                <h2>Update profile</h2>
+                                                <p>Change profile name and set new profile description</p>
                                             </div>
                                         </div>
                                     </div>

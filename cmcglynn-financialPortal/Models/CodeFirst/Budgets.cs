@@ -23,33 +23,58 @@ namespace cmcglynn_financialPortal.Models.CodeFirst
         public virtual Category Category { get; set; }
         public virtual ApplicationUser Author { get; set; }
 
-        public decimal? BudgetAmount
+        public decimal? SpentAmount
         {
             get
             {
-                if (Category != null)
+                if (HouseHold != null && Category != null && Frequency != null)
                 {
-                    if (Frequency != null && Frequency.Name == "Weekly")
+                    decimal amount = 0;
+                    if (Frequency.Name == "Weekly")
                     {
                         var previousSunday = DateTime.Now.Previous(DayOfWeek.Sunday);
                         var nextMonday = DateTime.Now.Next(DayOfWeek.Monday);
-                        return Category.Transactions.Where(t => t.TransactionDate > previousSunday && t.TransactionDate < nextMonday && t.Void == false).Sum(t => t.Amount);
-
+                        foreach (var trans in Category.Transactions.Where(t => t.Accounts.HouseHoldId == HouseHoldId && t.TransactionDate > previousSunday && t.TransactionDate < nextMonday && t.Void == false).ToList())
+                        {
+                            amount -= trans.Amount;
+                        }
+                        return amount;
                     }
-                    else if (Frequency != null && Frequency.Name == "Monthly")
+                    else if (Frequency.Name == "Monthly")
                     {
-
-                        return Category.Transactions.Where(t => t.TransactionDate.Month == DateTime.Now.Month && t.TransactionDate.Year == DateTime.Now.Year && t.Void == false).Sum(t => t.Amount);
+                        foreach (var trans in Category.Transactions.Where(t => t.Accounts.HouseHoldId == HouseHoldId && t.TransactionDate.Month == DateTime.Now.Month && t.TransactionDate.Year == DateTime.Now.Year && t.Void == false).ToList())
+                        {
+                            amount -= trans.Amount;
+                        }
+                        return amount;
                     }
-                    else if (Frequency != null && Frequency.Name == "Yearly")
+                    else if (Frequency.Name == "Yearly")
                     {
-
-                        return Category.Transactions.Where(t => t.TransactionDate.Year == DateTime.Now.Year && t.Void == false).Sum(t => t.Amount);
+                        foreach (var trans in Category.Transactions.Where(t => t.Accounts.HouseHoldId == HouseHoldId && t.TransactionDate.Year == DateTime.Now.Year && t.Void == false).ToList())
+                        {
+                            amount -= trans.Amount;
+                        }
+                        return amount;
                     }
                     else
                     {
                         return null;
                     }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
+
+        public int? BudgetPercentage
+        {
+            get
+            {
+                if (Amount > 0)
+                {
+                    return Convert.ToInt32((SpentAmount / Amount) * 100);
                 }
                 else
                 {

@@ -15,15 +15,12 @@ namespace cmcglynn_financialPortal.Controllers
     [AuthorizeHouseHoldRequired]
     public class TransactionsController : Universal
     {
-        //private ApplicationDbContext db = new ApplicationDbContext();
-
         // GET: Transactions
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
-            var transactions = user.HouseHold.Accounts.SelectMany(t => t.Transactions).ToList();
-            //var transactions = db.Transactions.Include(t => t.Accounts).Include(t => t.Author).Include(t => t.Category).Include(t => t.TransactionType);
-            return View(transactions.ToList());
+            var transactions = user.HouseHold.Accounts.SelectMany(a => a.Transactions).ToList();
+            return View(transactions);
         }
 
         // GET: Transactions/Details/5
@@ -44,8 +41,8 @@ namespace cmcglynn_financialPortal.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
-            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name");
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName");
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.AccountsId = new SelectList(user.HouseHold.Accounts, "Id", "Name");
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name");
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type");
             return View();
@@ -56,12 +53,11 @@ namespace cmcglynn_financialPortal.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Title,Description,CategoryId,AccountsId,AccountTypeId,TransactionTypeId,Amount,TransactionDate")] Transactions transactions)
+        public ActionResult Create([Bind(Include = "Id,Title,Description,CategoryId,AccountsId,AccountTypeId,PostedDate,TransactionTypeId,Amount,TransactionDate")] Transactions transactions)
         {
-
+            var user = db.Users.Find(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
-                var user = db.Users.Find(User.Identity.GetUserId());
                 var household = user.HouseHold;
                 var updated = false;
                 transactions.AuthorId = user.Id;
@@ -124,9 +120,7 @@ namespace cmcglynn_financialPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.AccountId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
-           
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
+            ViewBag.AccountId = new SelectList(user.HouseHold.Accounts, "Id", "Name", transactions.AccountsId);           
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
             return View(transactions);
@@ -144,7 +138,8 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.AccountsId = new SelectList(user.HouseHold.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);
@@ -164,7 +159,8 @@ namespace cmcglynn_financialPortal.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.AccountsId = new SelectList(db.Accounts, "Id", "Name", transactions.AccountsId);
+            var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.AccountsId = new SelectList(user.HouseHold.Accounts, "Id", "Name", transactions.AccountsId);
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", transactions.AuthorId);
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", transactions.CategoryId);
             ViewBag.TransactionTypeId = new SelectList(db.TransactionType, "Id", "Type", transactions.TransactionTypeId);

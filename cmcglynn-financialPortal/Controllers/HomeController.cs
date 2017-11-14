@@ -20,10 +20,9 @@ namespace cmcglynn_financialPortal.Controllers
         [AuthorizeHouseHoldRequired]
         public ActionResult Index()
         {
-            //CalculationHelper helper = new CalculationHelper(new Expenses());
-
-            //helper.CalculateYearly();
-            return View();
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var transactions = user.HouseHold.Accounts.SelectMany(a => a.Transactions).ToList();
+            return View(transactions);
         }
 
         public ActionResult About()
