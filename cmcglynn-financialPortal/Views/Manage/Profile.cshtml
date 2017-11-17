@@ -16,7 +16,7 @@
                                             <h2 class="m-t-xs m-b-none">
                                                 @ViewBag.FullName
                                             </h2>
-                                            <h3 class="m-b-xs">
+                                            @*<h3 class="m-b-xs">
                                                 @if (@ViewBag.HouseHold != null)
                                                 {
                                                     @ViewBag.HouseHold
@@ -26,13 +26,16 @@
                                                 {
                                                     <span> NO HOUSEHOLD </span>
                                                 }
-                                            </h3>
+                                            </h3>*@
                                             <a href="@Url.Action("ChangePassword", "Manage")" class="btn btn-accent">Change your password</a>
                                             <a href="@Url.Action("ChangeUserInfo", "Manage")" class="btn btn-accent">Change account information</a>
                                         </div>
                                     </div>
                                     <div class="col-md-3">
-                                        <table class="table small m-t-sm">
+
+
+
+                                        @*<table class="table small m-t-sm">
                                             <tbody>
                                                 <tr>
                                                     <td>
@@ -59,19 +62,19 @@
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                        </table>
+                                        </table>*@
                                     </div>
                                     <div class="col-md-3 m-t-sm">
                                         <span class="c-white">
-                                            Contact with user
+                                            @*Contact with user*@
                                         </span>
                                         <br>
                                         <small>
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                                            @*Lorem Ipsum is simply dummy text of the printing and typesetting industry*@
                                         </small>
                                         <div class="btn-group m-t-sm">
-                                            <a href="#" class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> Contact</a>
-                                            <a href="#" class="btn btn-default btn-sm"><i class="fa fa-check"></i> Check availability</a>
+                                            @*<a href="#" class="btn btn-default btn-sm"><i class="fa fa-envelope"></i> Contact</a>
+                                            <a href="#" class="btn btn-default btn-sm"><i class="fa fa-check"></i> Check availability</a>*@
                                         </div>
 
                                     </div>
@@ -152,14 +155,14 @@
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="panel-body">
-                                <h4> Project this year</h4>
-                                <p class="small">
+                                @*<h4> Project this year</h4>*@
+                                @*<p class="small">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
-                                </p>
+                                </p>*@
                                 <div class="flot-chart  m-t-md m-b-xl" style="height: 200px">
                                     <div class="flot-chart-content" id="flotProfile"></div>
                                 </div>
-                                <table class="table table-striped">
+                                @*<table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -216,7 +219,7 @@
                                         </tr>
 
                                     </tbody>
-                                </table>
+                                </table>*@
                             </div>
                         </div>
                     </div>
@@ -227,7 +230,7 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-md-3 col-xs-6 text-center">
-                                        <h2 class="no-margins">
+                                        @*<h2 class="no-margins">
                                             534
                                         </h2>
                                         <span class="c-white">Commits</span> in last week
@@ -248,7 +251,7 @@
                                         <h2 class="no-margins">
                                             14
                                         </h2>
-                                        <span class="c-white">New</span> builds
+                                        <span class="c-white">New</span> builds*@
                                     </div>
                                 </div>
                             </div>

@@ -30,7 +30,10 @@ else
             <a href="@Url.Action("Invite", "HouseHolds")" class="btn btn-accent">Invite</a>
             <a href="@Url.Action("Edit", "HouseHolds")" class="btn btn-accent">Edit</a>
             <a href="@Url.Action("Leave", "HouseHolds")" class="btn btn-accent">Leave</a>
-        <img style="height:100px; width:100px" src="@ViewBag.ProfilePic" />
+          
+        foreach (var user in Model.Users) { 
+            <img style="height:120px; width:120px" src="@user.ProfilePic" />
+                }
 
 
 
@@ -40,9 +43,8 @@ else
 
 
 
-
-    }
-}
+            }
+        }
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>

@@ -107,7 +107,7 @@
                     </td>*@
                 <td style="display:inline-flex">
                     <a href="@Url.Action("Edit", "Transactions", new { id = item.Id })"><i class="fa fa-pencil-square" style="font-size:18px"></i></a> |
-                    <a href="@Url.Action("Details", "Transactions", new { id = item.Id })"><i class="fa fa-ban" style="font-size:18px"></i></a> |
+                    <a href="@Url.Action("Void", "Transactions", new { id = item.Id })"><i class="fa fa-ban" style="font-size:18px"></i></a> |
                     <a href="@Url.Action("Delete", "Transactions", new { id = item.Id })"><i class="fa fa-trash" style="font-size:18px"></i></a>
                 </td>
             </tr>

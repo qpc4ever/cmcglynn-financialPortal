@@ -34,9 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.TransactionType.Type)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.Name)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
@@ -59,104 +59,113 @@
         </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model)
+                        @foreach (var item in Model)
             {
-                <tr>
-                    @if (item.Void == true)
-                    {
+                            <tr>
+                                @if (item.Void == true)
+                                {
 
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.PostedDate)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.PostedDate)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
 
-                        @Html.DisplayFor(modelItem => item.TransactionDate)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.TransactionDate)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
 
-                        @Html.DisplayFor(modelItem => item.Accounts.Name)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.Accounts.Name)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
 
-                        @Html.DisplayFor(modelItem => item.Author.FirstName)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.Category.Name)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.TransactionType.Type)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.ReconciledStatus)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReconciledAmount)
-                    </td>*@
-                        <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
-                            @Html.DisplayFor(modelItem => item.ReconciliationDate)
-                        </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Void)
-                    </td>*@
-                    }
-                    else
-                    {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PostedDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TransactionDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Accounts.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Author.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TransactionType.Type)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Amount)
-                    </td>
-                    @*<td>
-            @Html.DisplayFor(modelItem => item.ReconciledStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReconciledAmount)
-        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ReconciliationDate)
-                    </td>
-                    @*<td>
-            @Html.DisplayFor(modelItem => item.Void)
-        </td>*@
-                    }
-                    <td style="display:inline-flex">
-                        <a href="@Url.Action("Edit", "Transactions", new { id = item.Id })"><i class="fa fa-pencil-square" style="font-size:18px"></i></a> | 
-                        <a href="@Url.Action("Details", "Transactions", new { id = item.Id })"><i class="fa fa-ban" style="font-size:18px"></i></a> |
-                        <a href="@Url.Action("Delete", "Transactions", new { id = item.Id })"><i class="fa fa-trash" style="font-size:18px"></i></a>
-                    </td>
-                </tr>
-            }
+                                        @Html.DisplayFor(modelItem => item.Author.FirstName)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.Category.Name)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.TransactionType.Type)
+                                    </td>
+                                    @*<td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>*@
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.ReconciledStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReconciledAmount)
+                                </td>*@
+                                    <td style="text-decoration:line-through; font-style:italic; color:dimgray;">
+                                        @Html.DisplayFor(modelItem => item.ReconciliationDate)
+                                    </td>
+                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.Void)
+                                </td>*@
+                                }
+                                else
+                                {
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PostedDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Accounts.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Author.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TransactionType.Type)
+                                    </td>
+                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount)
+                                    </td>
+                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.ReconciledStatus)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ReconciledAmount)
+                                </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ReconciliationDate)
+                                    </td>
+                                    @*<td>
+                                    @Html.DisplayFor(modelItem => item.Void)
+                                </td>*@
+                                }
+                                @if (item.Void == true)
+                                {
+                                    <td style="display:inline-flex">
+                                        <a href="@Url.Action("UnVoid", "Transactions", new { id = item.Id })"><i class="fa fa-reply" style="font-size:18px">VOID</i></a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="display:inline-flex">
+                                        <a href="@Url.Action("Edit", "Transactions", new { id = item.Id })"><i class="fa fa-pencil-square" style="font-size:18px"></i></a> |
+                                        <a href="@Url.Action("Void", "Transactions", new { id = item.Id })"><i class="fa fa-ban" style="font-size:18px"></i></a> |
+                                        <a href="@Url.Action("Delete", "Transactions", new { id = item.Id })"><i class="fa fa-trash" style="font-size:18px"></i></a>
+                                    </td>
+                                }
+                            </tr>
+                        }
         </tbody>
 </table>
 @section scripts{

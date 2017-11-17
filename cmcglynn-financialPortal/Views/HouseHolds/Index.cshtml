@@ -18,9 +18,13 @@ else
     else
     {
         <h2 class="m-b-xs">
-            @if (@ViewBag.HouseHold != null)
+            @if (ViewBag.HouseHold != null)
             {
                 @ViewBag.HouseHold
+                @*foreach (var user in Model.Users)
+                {
+                    <img style="height:30px; width:30px" src="@user.ProfilePic" />
+                }*@
             }
             else
             {
@@ -30,45 +34,182 @@ else
             <a href="@Url.Action("Invite", "HouseHolds")" class="btn btn-accent">Invite</a>
             <a href="@Url.Action("Edit", "HouseHolds")" class="btn btn-accent">Edit</a>
             <a href="@Url.Action("Leave", "HouseHolds")" class="btn btn-accent">Leave</a>
-        <img style="height:100px; width:100px" src="@ViewBag.ProfilePic" />
 
+            <div class="row" style="margin-top: 20px">
+            @foreach (var account in Model.Accounts)
+            {
+                <a href="@Url.Action("Details","Accounts", new { id = account.Id })">
+                @if (account.Balance < 0)
+                {
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="panel panel-filled">
+                            <div class="panel-body">
+                                <h2 class="m-b-none text-nowrap">
+                                    $ @account.Balance <span class="slight"><i class="fa fa-play fa-rotate-90 text-warning"></i></span>
+                                </h2>
+                                <div class="small">@account.Name</div>
+                                <div class="slight m-t-sm">
+                                    <i class="fa fa-question-circle"></i>
+                                    <span class="c-white">
+                                        @if (account.Description != null)
+                                        {
+                                            @account.Description
+                                        }
+                                        else
+                                        {
+                                            <span>no description</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-4 col-xs-6">
+                        <div class="panel panel-filled">
+                            <div class="panel-body">
+                                <h2 class="m-b-none text-nowrap">
+                                    $ @account.Balance <span class="slight"><i class="fa fa-play fa-rotate-270 text-success"> </i> +20%</span>
+                                </h2>
+                                <div class="small">@account.Name</div>
+                                <div class="slight m-t-sm">
+                                    <i class="fa fa-question-circle"></i>
+                                    <span class="c-white">
+                                        @if (account.Description != null)
+                                        {
+                                            @account.Description
+                                        }
+                                        else
+                                        {
+                                            <span>no description</span>
+                                        }
+                                    </span>
+                                </div>                            
+                            </div>
+                        </div>
+                    </div>
+                }
+                </a>
+            }
+            </div>
+        foreach (var user in Model.Users)
+        {
+            <img style="height:120px; width:120px" src="@user.ProfilePic" />
+        }
 
-
-
-
-
-
-
-
-
+        @*foreach (var budget in Model.Budgets)
+        {
+            <span>@budget.SpentAmount</span>
+        }*@
     }
-}
-@*<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-       
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+    @*<div id="SampleChart" style="height:300px; margin-left:700px;"></div>*@
 }
 
-</table>*@
+<div class="panel">
+    <div class="panel-heading">
+        <div class="panel-tools">
+            <a class="panel-toggle"><i class="fa fa-chevron-up"></i></a>
+            <a class="panel-close"><i class="fa fa-times"></i></a>
+        </div>
+        Doughnut bar chart
+    </div>
+    <div class="panel-body">
+        <div>
+            <iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
+            <canvas id="doughnutChart" height="292" width="488" style="display: block; width: 488px; height: 292px;"></canvas>
+        </div>
+    </div>
+</div>
+    @*<p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+
+                <th></th>
+            </tr>
+
+        @foreach (var item in Model) {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>
+            </tr>
+        }
+
+        </table>*@
+    @section scripts{
+        <script src="~/Assets/vendor/chart.js/dist/Chart.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+                var globalOptions = {
+                    responsive: true,
+                    legend: {
+                        labels:{
+                            fontColor:"#90969D"
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            ticks: {
+                                fontColor: "#90969D"
+                            },
+                            gridLines: {
+                                color: "#37393F"
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                fontColor: "#90969D"
+                            },
+                            gridLines: {
+                                color: "#37393F"
+                            }
+                        }]
+                    }
+                };
+
+                var doughnutData = {
+                    labels: [
+                        "Income [$" + @ViewBag.TotalIncome + "]",
+                        "Expense [$" + @ViewBag.TotalExpense + "]"
+                        //"Laptop"
+                    ],
+                    datasets: [
+                        {
+                            data: [@ViewBag.TotalIncome, @ViewBag.TotalExpense],
+                            borderWidth: 0,
+                            backgroundColor: [
+                                "rgba(246,168,33, 0.8)",
+                                "rgba(246,168,33, 0.4)"
+                                //"rgba(246,168,33, 0.1)"
+                            ],
+                            hoverBackgroundColor: [
+                                "#F6A821",
+                                "#F6A821"
+                                //"#F6A821"
+                            ]
+                        }]
+                };
+
+
+                var c6 = document.getElementById("doughnutChart").getContext("2d");
+                new Chart(c6, {type: 'doughnut', data: doughnutData/*, options: globalOptions*/});
+
+            });
+        </script>
+    }

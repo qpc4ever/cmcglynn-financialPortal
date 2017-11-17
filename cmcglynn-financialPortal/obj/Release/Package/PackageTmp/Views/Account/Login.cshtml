@@ -52,8 +52,8 @@
                             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
                             {
                                 @Html.AntiForgeryToken()
-                                <input name="Email" value="qpc4ever@gmail.com" hidden />
-                                <input name="Password" value="Qpc4ever2!" hidden />
+                                <input name="Email" value="Guestuser@gmail.com" hidden />
+                                <input name="Password" value="Guestuser1!" hidden />
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-lg btn-full-width btn btn-accent" value="Guest User" />
                                 </div>             

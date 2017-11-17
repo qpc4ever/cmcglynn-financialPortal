@@ -28,9 +28,10 @@
                     <div class="panel-body">
                         <p>
                         </p>
-                       @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "loginForm", role = "form" }))
+                       @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "loginForm", role = "form", enctype = "Multipart/form-data" }))
                        {
                         @Html.AntiForgeryToken()
+                        @Html.ValidationSummary("", new { @class = "text-danger" })
                            if (Model.HouseHoldId != null)
                            {
                             <input name="HouseHoldId" value="@Model.HouseHoldId" hidden />

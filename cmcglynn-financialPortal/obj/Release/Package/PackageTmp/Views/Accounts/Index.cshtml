@@ -30,10 +30,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.Balance)
             </th>
-            <th>
+            @*<th>
                 Reconciled
-                @*@Html.DisplayNameFor(model => model.Reconcialed)*@
-            </th>
+                Html.DisplayNameFor(model => model.Reconcialed)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.Updated)
             </th>
@@ -71,9 +71,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Balance)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Reconcialed)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Updated)
                 </td>

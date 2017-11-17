@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="~/Assets/styles/pe-icons/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="~/Assets/styles/pe-icons/helper.css" />
     <link rel="stylesheet" href="~/Assets/styles/stroke-icons/style.css" />
-    <link rel="stylesheet" href="~/Assets/styles/style.css">
+    <link rel="stylesheet" href="~/Assets/styles/style.css" />
 </head>
 <body>
     <!-- Wrapper-->
@@ -50,6 +50,20 @@
                             <i class="stroke-hamburgermenu"></i>
                         </a>
                     </div>
+                    <form class="navbar-form navbar-left">
+                        @*<input type="text" class="form-control" placeholder="Search data for analysis" style="width: 175px">*@
+                        @{
+                            if (ViewBag.Overdraft == "True")
+                            {
+                                <p style="display: inline-block; color:red; margin-left: 50px; margin-top: 9px;">Account overdraft warning!</p>
+                            }
+                            else
+                            {
+
+                            }
+                        }
+
+                    </form>
                     @*<form class="navbar-form navbar-left">
                         <input type="text" class="form-control" placeholder="Search data for analysis" style="width: 175px">
                     </form>*@
@@ -131,7 +145,7 @@
                         @*<span>NO HOUSEHOLD</span>*@
                     }
                     <li class="active">
-                        <a href="@Url.Action("Index", "Manage")"><i class="pe-7s-add-user text-accent">&nbsp;&nbsp;</i>Profile</a>
+                        <a href="@Url.Action("Profile", "Manage")"><i class="pe-7s-add-user text-accent">&nbsp;&nbsp;</i>Profile</a>
                     </li>
                     @*<li class="nav-category">
                             UI Elements
@@ -254,7 +268,7 @@
                                     <small>@*Luna Admin Theme*@<br>@*Dashboard*@<br> <span class="c-white"></span></small>
                                 </div>
                                 <div class="header-icon">
-                                    <i class="pe page-header-icon pe-7s-cash"></i>
+                                    <i class="pe page-header-icon pe-7s-home"></i>
                                 </div>
                                 <div class="header-title">
                                     <h3 class="m-b-xs">

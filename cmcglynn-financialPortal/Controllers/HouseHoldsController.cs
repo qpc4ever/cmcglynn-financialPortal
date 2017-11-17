@@ -25,6 +25,9 @@ namespace cmcglynn_financialPortal.Controllers
         public ActionResult Index()
         {
             var user = db.Users.Find(User.Identity.GetUserId());
+            ViewBag.TotalIncome = user.HouseHold.Accounts.SelectMany(a => a.Transactions.Where(t => t.Void == false && t.Amount > 0)).Sum(t => t.Amount);
+            ViewBag.TotalExpense = Math.Abs(user.HouseHold.Accounts.SelectMany(a => a.Transactions.Where(t => t.Void == false && t.Amount < 0)).Sum(t => t.Amount));
+
 
             return View(user.HouseHold);
         }

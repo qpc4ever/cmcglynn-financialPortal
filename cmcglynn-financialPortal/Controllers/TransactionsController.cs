@@ -90,6 +90,7 @@ namespace cmcglynn_financialPortal.Controllers
                             n.NotifyUserId = accounts.HouseHoldId.ToString();
                             n.Created = DateTime.Now;
                             n.AccountId = accounts.Id;
+                            n.HouseHoldId = household.Id;
                             n.Type = "Zero Dollars";
                             n.Description = "Your account: " + accounts.Name + " has reached an amount of zero.";
                             db.Notifications.Add(n);
@@ -106,6 +107,7 @@ namespace cmcglynn_financialPortal.Controllers
                             n.NotifyUserId = u.Id;
                             n.Created = DateTime.Now;
                             n.AccountId = accounts.Id;
+                            n.HouseHoldId = household.Id;
                             n.Type = "Over Draft";
                             n.Description = "Your account: " + accounts.Name + " has reached a negative amount.";
                             db.Notifications.Add(n);
@@ -198,7 +200,7 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 return RedirectToAction("UnVoid");
             }
-            return View(transactions);
+            return View("Index");
         }
 
         // GET: Transactions/UnVoid/5

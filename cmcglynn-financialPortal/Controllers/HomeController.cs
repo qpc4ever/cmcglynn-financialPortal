@@ -20,6 +20,8 @@ namespace cmcglynn_financialPortal.Controllers
         [AuthorizeHouseHoldRequired]
         public ActionResult Index()
         {
+           
+           
             var user = db.Users.Find(User.Identity.GetUserId());
             var transactions = user.HouseHold.Accounts.SelectMany(a => a.Transactions).ToList();
             return View(transactions);
