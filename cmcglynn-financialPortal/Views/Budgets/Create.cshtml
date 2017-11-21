@@ -24,7 +24,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BudgetTypeId, "Type", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("BudgetTypeId", null, htmlAttributes: new { @class = "form-control" })
+                <div class="radio radio-info radio-inline">
+                    <input type="radio" id="inlineRadio1" value="option1" name="BudgetTypeId" checked="">
+                    <label for="inlineRadio1">Income</label>
+                </div>
+                <div class="radio radio-inline">
+                    <input type="radio" id="inlineRadio2" value="option2" name="BudgetTypeId">
+                    <label for="inlineRadio2">Expense</label>
+                </div>
+                @*@Html.DropDownList("BudgetTypeId", null, htmlAttributes: new { @class = "form-control" })*@
                 @Html.ValidationMessageFor(model => model.BudgetTypeId, "", new { @class = "text-danger" })
             </div>
         </div>

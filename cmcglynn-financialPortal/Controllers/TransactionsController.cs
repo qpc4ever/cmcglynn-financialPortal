@@ -271,7 +271,7 @@ namespace cmcglynn_financialPortal.Controllers
             {
                 ViewBag.Overdraft = "False";
             }
-            transactions.Void = true;
+            transactions.Void = false;
 
             db.SaveChanges();
             return RedirectToAction("Index");

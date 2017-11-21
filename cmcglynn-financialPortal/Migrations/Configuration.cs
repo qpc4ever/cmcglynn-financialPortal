@@ -75,6 +75,55 @@ namespace cmcglynn_financialPortal.Migrations
                 category.Name = "Utilities";
                 context.Categories.Add(category);
             }
+            if (!context.Categories.Any(c => c.Name == "Education"))
+            {
+                var category = new Category();
+                category.Name = "Education";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Gifts"))
+            {
+                var category = new Category();
+                category.Name = "Gifts";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Charity"))
+            {
+                var category = new Category();
+                category.Name = "Charity";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Food"))
+            {
+                var category = new Category();
+                category.Name = "Food";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Insurance"))
+            {
+                var category = new Category();
+                category.Name = "Insurance";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Taxes"))
+            {
+                var category = new Category();
+                category.Name = "Taxes";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Travel"))
+            {
+                var category = new Category();
+                category.Name = "Travel";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Other"))
+            {
+                var category = new Category();
+                category.Name = "Other";
+                context.Categories.Add(category);
+            }
+            
         }
     }
 }
