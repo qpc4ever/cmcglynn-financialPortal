@@ -18,7 +18,7 @@ namespace cmcglynn_financialPortal.Models
             if (User.Identity.IsAuthenticated)
             {
                 var user = db.Users.Find(User.Identity.GetUserId());
-
+                ViewBag.Transactions = user.Transactions.ToList();
                 ViewBag.FirstName = user.FirstName;
                 ViewBag.LastName = user.LastName;
                 ViewBag.FullName = user.FullName;

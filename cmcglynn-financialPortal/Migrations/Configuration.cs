@@ -117,6 +117,42 @@ namespace cmcglynn_financialPortal.Migrations
                 category.Name = "Travel";
                 context.Categories.Add(category);
             }
+            if (!context.Categories.Any(c => c.Name == "Events"))
+            {
+                var category = new Category();
+                category.Name = "Events";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Paycheck"))
+            {
+                var category = new Category();
+                category.Name = "Paycheck";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Bonus"))
+            {
+                var category = new Category();
+                category.Name = "Bonus";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Investment"))
+            {
+                var category = new Category();
+                category.Name = "Investment";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Interest"))
+            {
+                var category = new Category();
+                category.Name = "Interest";
+                context.Categories.Add(category);
+            }
+            if (!context.Categories.Any(c => c.Name == "Winnings"))
+            {
+                var category = new Category();
+                category.Name = "Winnings";
+                context.Categories.Add(category);
+            }
             if (!context.Categories.Any(c => c.Name == "Other"))
             {
                 var category = new Category();

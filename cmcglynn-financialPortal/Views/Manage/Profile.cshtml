@@ -85,7 +85,7 @@
                     </div>
                 </div>
 
-                @*<div class="row">
+                <div class="row">
                     <div class="col-md-6">
                         <div class="panel">
                             <div class="panel-body">
@@ -97,22 +97,24 @@
                                         </div>
                                         <div class="vertical-timeline-content">
                                             <div class="p-sm">
-                                                @foreach (var transactions in Model.Transactions)
+                                                @foreach (var transaction in ViewBag.Transactions)
                                                 {
 
-                                    @*<div class="vertical-timeline-block">
+                                    <div class="vertical-timeline-block">
                                         <div class="vertical-timeline-icon">
-                                            <i class="fa fa-file"></i>
+                                            <i class="fa fa-dollar"></i>
                                         </div>
                                         <div class="vertical-timeline-content">
                                             <div class="p-sm">
-                                                <span class="vertical-date pull-right"> <small>2 days ago</small> </span>
-                                                <h2>Add new documents to X project</h2>
-                                                <p>Project_document.docx, Contract_20_11_2016.docx, 10_08_2016.docx</p>
+                                                <span class="vertical-date pull-right"> <small>@transaction.TransactionDate</small> </span>
+                                                <h2>Added new transaction to : @transaction.Accounts.Name</h2>
+                                               
+                                                <p>@transaction.Description</p>
+                                                <p>$ @transaction.Amount</p>
                                             </div>
                                         </div>
-                                    </div>*@
-                                                @*}
+                                    </div>
+                                                }       @*}
                                                 <span class="vertical-date pull-right"> <small>1 day ago</small> </span>
                                                 <h2>Update profile</h2>
                                                 <p>Change profile name and set new profile description</p>
@@ -159,9 +161,9 @@
                                 @*<p class="small">
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
                                 </p>*@
-                                <div class="flot-chart  m-t-md m-b-xl" style="height: 200px">
+                                @*<div class="flot-chart  m-t-md m-b-xl" style="height: 200px">
                                     <div class="flot-chart-content" id="flotProfile"></div>
-                                </div>
+                                </div>*@
                                 @*<table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -224,12 +226,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                @*<div class="row">
                     <div class="col-md-12">
                         <div class="panel panel-filled">
                             <div class="panel-body">
                                 <div class="row">
-                                    <div class="col-md-3 col-xs-6 text-center">
+                                    <div class="col-md-3 col-xs-6 text-center">*@
                                         @*<h2 class="no-margins">
                                             534
                                         </h2>

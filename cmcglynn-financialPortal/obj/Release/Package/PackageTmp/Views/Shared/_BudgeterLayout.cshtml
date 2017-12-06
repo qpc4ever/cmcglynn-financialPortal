@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="~/Assets/styles/pe-icons/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="~/Assets/styles/pe-icons/helper.css" />
     <link rel="stylesheet" href="~/Assets/styles/stroke-icons/style.css" />
-    <link rel="stylesheet" href="~/Assets/styles/style.css">
+    <link rel="stylesheet" href="~/Assets/styles/style.css" />
 </head>
 <body>
     <!-- Wrapper-->
@@ -55,7 +55,12 @@
                         @{
                             if (ViewBag.Overdraft == "True")
                             {
-                                <p style="display: inline-block; margin-left: 50px; margin-top: 9px;">Account overdraft warning!</p>
+                                <a type="button" class="btn btn-danger" style="background-color:#f6a821;margin-left: 50px; margin-top: 9px;" href="@Url.Action("Index", "Transactions")">Account overdraft warning!</a>
+                                @*<p style="display: inline-block; color:red; margin-left: 50px; margin-top: 9px;">Account overdraft warning!</p>*@
+                            }
+                            else
+                            {
+
                             }
                         }
 
@@ -65,11 +70,11 @@
                     </form>*@
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
+                        <li class="dropdown" style="cursor: pointer;">
                             <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false" style="padding-top: 18px;padding-bottom: 15px;">
                                 Notifications<span class="label label-warning pull-right">@ViewBag.Notifications.Count</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" >
                                 @foreach (var notification in ViewBag.Notifications)
                                 {
                                     <li>
@@ -234,7 +239,7 @@
                             <span class="c-white">@*LUNA*@</span> If you want to invite other users to your household, you can invite them via your Household page, which will be selectable in the sidebar under "Household" once you are part of a household.<hr />
                             To join a household, click the link in your invitation email, then proceed to the Join page. Simply click "Join" and you're all set!<hr />
                             Once you're in a household, you will want to link your bank accounts. To do this, click "Accounts" in the side-bar, then click "Add Account."<hr />
-                            After you have at least one account linked to your household, you can add a new transaction from anywhere on the site via the "New Transaction" .
+                            After you have at least one account linked to your household, you can add a new transaction from anywhere on the site via the "New Transaction" button.
                         </div>
                     </li>
                 </ul>
@@ -257,17 +262,17 @@
                             <div class="view-header">
                                 <div class="pull-right text-right" style="line-height: 14px">
                                     <div>
-                                        <a type="button" class="btn btn-accent" style="background-color:#f6a821;" href="@Url.Action("Create", "Transactions")" data-target="#myTransactionModal" data-toggle="modal">NEW TRANSACTION</a>
+                                        <a type="button" class="btn btn-accent" style="background-color:#f6a821; color:white;" href="@Url.Action("Create", "Transactions")" data-target="#myTransactionModal" data-toggle="modal">NEW TRANSACTION</a>
                                         
                                         @*<a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>*@
                                     </div>
                                     <small>@*Luna Admin Theme*@<br>@*Dashboard*@<br> <span class="c-white"></span></small>
                                 </div>
                                 <div class="header-icon">
-                                    <i class="pe page-header-icon pe-7s-cash"></i>
+                                    <i class="pe page-header-icon pe-7s-home"></i>
                                 </div>
                                 <div class="header-title">
-                                    <h3 class="m-b-xs">
+                                    <h2 class="m-b-xs">
                                         @if (@ViewBag.HouseHold != null)
                                         {
                                             @ViewBag.HouseHold
@@ -277,7 +282,7 @@
                                         {
                                             <span> NO HOUSEHOLD </span>
                                         }
-                                    </h3>
+                                    </h2>
                                     <small>
                                         @*Special minimal admin theme with Dark UI style for monitoring or administration web applications.*@
                                     </small>

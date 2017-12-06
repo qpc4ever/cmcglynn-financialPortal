@@ -70,11 +70,11 @@
                     </form>*@
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
+                        <li class="dropdown" style="cursor: pointer;">
                             <a data-toggle="dropdown" class="dropdown-toggle" aria-expanded="false" style="padding-top: 18px;padding-bottom: 15px;">
                                 Notifications<span class="label label-warning pull-right">@ViewBag.Notifications.Count</span>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu" >
                                 @foreach (var notification in ViewBag.Notifications)
                                 {
                                     <li>
@@ -262,7 +262,7 @@
                             <div class="view-header">
                                 <div class="pull-right text-right" style="line-height: 14px">
                                     <div>
-                                        <a type="button" class="btn btn-accent" style="background-color:#f6a821;" href="@Url.Action("Create", "Transactions")" data-target="#myTransactionModal" data-toggle="modal">NEW TRANSACTION</a>
+                                        <a type="button" class="btn btn-accent" style="background-color:#f6a821; color:white;" href="@Url.Action("Create", "Transactions")" data-target="#myTransactionModal" data-toggle="modal">NEW TRANSACTION</a>
                                         
                                         @*<a href="@Url.Action("Create", "Transactions")" class="btn btn-accent">NEW TRANSACTION</a>*@
                                     </div>
